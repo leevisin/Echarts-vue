@@ -2,7 +2,6 @@
   <el-container>
     <el-aside style="width: 665px">
       <switch></switch>
-<!--      <PreviewConfig></PreviewConfig>-->
       <PreviewCon></PreviewCon>
     </el-aside>
     <el-main>

@@ -7,13 +7,18 @@
 <script>
 export default {
   name: 'PreviewImg',
+  data() {
+    return {
+      title: 'Echarts入门示例'
+    }
+  },
   methods: {
     myEcharts() {
       var myChart = this.$echarts.init(document.getElementById('main'));
       //配置图表
       var option = {
         title: {
-          text: 'echarts入门示例',
+          text: this.title,
         },
         tooltip: {},
         legend: {

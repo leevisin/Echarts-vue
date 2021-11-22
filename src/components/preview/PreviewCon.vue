@@ -1,6 +1,8 @@
 <template>
   <el-tabs class="categories" type="border-card" @tab-click="handleClick">
-    <el-tab-pane label="Option Preview">Option Preview</el-tab-pane>
+    <el-tab-pane label="Option Preview">
+      <Option></Option>
+    </el-tab-pane>
     <el-tab-pane label="Edit Code">
       <Code></Code>
     </el-tab-pane>
@@ -11,11 +13,12 @@
 </template>
 
 <script>
+  import Option from './Option'
   import Chart from './Chart'
   import Code from './Code'
   export default {
     name: 'PreviewCon',
-    components: {Code, Chart},
+    components: {Option, Code, Chart},
     data() {
       return {
         activeName: 'second'

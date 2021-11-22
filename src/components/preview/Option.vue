@@ -24,9 +24,8 @@ export default {
           title: this.title
         })
         .then(successResponse => {
-
-          }
-        )
+          this.title = 'ok!'
+        })
         .catch(failResponse => {
 
         }

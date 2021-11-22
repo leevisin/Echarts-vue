@@ -18,14 +18,19 @@ export default {
     }
   },
   methods: {
-    update () {
-      this.$axios()
+    update() {
+      this.$axios
         .post('/update', {
           title: this.title
         })
-        .then(
+        .then(successResponse => {
 
+          }
         )
+        .catch(failResponse => {
+
+        }
+      )
     }
   }
 }

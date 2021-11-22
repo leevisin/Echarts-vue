@@ -14,7 +14,7 @@
   import Chart from './Chart'
   import Code from './Code'
   export default {
-    name: 'PreviewNav',
+    name: 'PreviewCon',
     components: {Code, Chart},
     data() {
       return {

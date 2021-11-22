@@ -2,7 +2,8 @@
   <el-container>
     <el-aside style="width: 665px">
       <switch></switch>
-      <PreviewConfig></PreviewConfig>
+<!--      <PreviewConfig></PreviewConfig>-->
+      <PreviewCon></PreviewCon>
     </el-aside>
     <el-main>
       <PreviewImg></PreviewImg>
@@ -11,11 +12,11 @@
 </template>
 
 <script>
-  import PreviewConfig from './PreviewConfig'
+  import PreviewCon from './PreviewCon'
   import PreviewImg from './PreviewImg'
   export default {
     name: 'PreviewInterface',
-    components: {PreviewConfig, PreviewImg}
+    components: {PreviewCon, PreviewImg}
   }
 </script>
 

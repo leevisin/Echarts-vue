@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui'
 import * as echarts from 'echarts'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -21,6 +22,7 @@ new Vue({
   el: '#app',
   render: h =>h(App),
   router,
+  store,
   components: { App, codemirror },
   template: '<App/>'
 })

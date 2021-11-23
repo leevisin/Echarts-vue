@@ -3,7 +3,6 @@
     <el-row style="height: 800px;">
 <!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
-                  disabled="false"
                   v-for="item in charts"
                   :key="item.id">
         <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"

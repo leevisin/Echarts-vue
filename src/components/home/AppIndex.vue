@@ -1,6 +1,8 @@
 <template>
   <div>
-    UserName
+    UserName: {{userName}}
+    <br>
+    UserAge: {{userAge}}
   </div>
 </template>
 
@@ -9,12 +11,13 @@
     name: 'AppIndex',
     data() {
       return {
-        userName: this.$store.state.userName
+        userName: this.$store.state.userName,
+        userAge: this.$store.state.userAge,
       }
     },
     created() {
       console.info(this.userName);
-      console.info("AAA");
+      console.info(this.userAge);
     }
   }
 </script>

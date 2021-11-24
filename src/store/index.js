@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     userName: 'San Zhang',
-    userAge: '2'
+    userAge: 2,
+    title: 'Echarts Demo'
   },
   mutations: {
     setUserName(state, aUserName){
@@ -14,16 +15,25 @@ const store = new Vuex.Store({
     },
     setUserAge(state, aUserAge){
       state.userAge = aUserAge;
-    }
+    },
+    setTitle(state, aTitle){
+      state.title = aTitle;
+    },
   },
   getters: {
     getAgeOfNextYear(state) {
       return state.userAge += 1;
-    }
+    },
+    getTitle(state) {
+      return state.title;
+    },
   },
   actions: {
     getAgeOfNextYear(context) {
       context.commit('getAgeOfNextYear');
+    },
+    getTitle(context) {
+      context.commit('getTitle');
     }
   }
 })

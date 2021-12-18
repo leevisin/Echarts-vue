@@ -35,7 +35,7 @@
     data() {
       return {
         userName: this.$store.state.userName,
-        userAge: this.$store.state.userAge,
+        // userAge: this.$store.state.userAge,
         ageOfNextYear: this.$store.getters.getAgeOfNextYear,
         titleTmp: ''
       }
@@ -49,6 +49,9 @@
       }
     },
     computed: {
+      userAge: function (){
+        return this.$store.getters.getAge
+      },
       nextAge: function () {
         return this.$store.getters.getAgeOfNextYear
       },

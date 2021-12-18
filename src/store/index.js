@@ -21,14 +21,20 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    getAge(state) {
+      return state.userAge;
+    },
     getAgeOfNextYear(state) {
-      return state.userAge += 1;
+      return state.userAge + 1;
     },
     getTitle(state) {
       return state.title;
     },
   },
   actions: {
+    getAge(context) {
+      context.commit('getAge');
+    },
     getAgeOfNextYear(context) {
       context.commit('getAgeOfNextYear');
     },

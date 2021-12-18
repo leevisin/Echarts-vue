@@ -1,6 +1,6 @@
 <template>
   <div className="Echarts">
-    <div id="main" style="width: auto;height: 800px;"></div>
+    <div id="main" :style="style"></div>
   </div>
 </template>
 
@@ -9,39 +9,101 @@ export default {
   name: 'PreviewImg',
   data() {
     return {
-      title: ''
+      chart: ''
+    }
+  },
+  props: {
+    id: {
+      type: String
+    },
+    width: {
+      type: String,
+      default: "100%"
+    },
+    height: {
+      type: String,
+      default: "800px"
+    },
+    option: {
+      type: Object,
+      default() {
+        return {
+          title: {
+            text: this.$store.getters.getTitle,
+          },
+          tooltip: {},
+          legend: {
+            data: ['销量']
+          },
+          xAxis: {
+            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+          },
+          yAxis: {},
+          series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+          }]
+        }
+      }
     }
   },
   methods: {
-    myEcharts() {
-      var myChart = this.$echarts.init(document.getElementById('main'));
-      //配置图表
-      var option = {
-        title: {
-          text: this.$store.state.title,
-        },
-        tooltip: {},
-        legend: {
-          data: ['销量']
-        },
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
-      };
-      myChart.setOption(option);
+    init() {
+      this.chart = this.$echarts.init(document.getElementById('main'));
+      this.chart.setOption(this.option);
+      window.addEventListener("resize", this.chart.resize);
     }
+    // myEcharts() {
+      // var myChart = this.$echarts.init(document.getElementById('main'));
+      // //配置图表
+      // var option = {
+      //   title: {
+      //     text: this.$store.getters.getTitle,
+      //   },
+      //   tooltip: {},
+      //   legend: {
+      //     data: ['销量']
+      //   },
+      //   xAxis: {
+      //     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      //   },
+      //   yAxis: {},
+      //   series: [{
+      //     name: '销量',
+      //     type: 'bar',
+      //     data: [5, 20, 36, 10, 10, 20]
+      //   }]
+      // };
+      // myChart.setOption(option);
+    // }
   },
   computed: {
-
+    style() {
+      return {
+        height: this.height,
+        width:  this.width
+      }
+    }
+  },
+  watch: {
+    option: {
+      handler(newVal, oldVal) {
+        if (this.chart) {
+          if (newVal) {
+            this.chart.setOption(newVal);
+          } else {
+            this.chart.setOption(oldVal);
+          }
+        } else {
+          this.init();
+        }
+      },
+      deep: true //对象内部属性的监听，关键。
+    }
   },
   mounted() {
-    this.myEcharts();
+    this.init();
   }
 }
 </script>

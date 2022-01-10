@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import PreviewIndex from '@/components/preview/PreviewIndex'
 import DataIndex from '@/components/data/DataIndex'
+import UserIndex from '@/components/user/UserIndex'
 
 Vue.use(Router)
 
@@ -43,6 +44,14 @@ export default new Router({
           path: '/data',
           name: '/Data',
           component: DataIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/user',
+          name: '/User',
+          component: UserIndex,
           meta: {
             requireAuth: true
           }

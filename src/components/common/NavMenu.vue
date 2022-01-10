@@ -29,10 +29,10 @@ export default {
   data () {
     return {
       navList: [
-        {name: '/index', navItem: 'Home'},
+        // {name: '/index', navItem: 'Home'},
         {name: '/preview', navItem: 'Preview'},
         {name: '/data', navItem: 'Data'},
-        {name: '/admin', navItem: 'Admin'}
+        {name: '/user', navItem: 'User'}
       ]
     }
   }

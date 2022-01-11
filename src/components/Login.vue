@@ -39,7 +39,7 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
-            this.$router.replace({path: '/index'})
+            this.$router.replace({path: '/preview'})
           }
         })
         .catch(failResponse => {
@@ -47,7 +47,7 @@ export default {
         })
     },
     skipLogin() {
-      this.$router.push('/index');
+      this.$router.push('/preview');
     }
   }
 }

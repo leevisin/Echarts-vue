@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-aside style="width: 665px">
+    <el-aside style="width: 38%">
       <switch></switch>
       <PreviewCon></PreviewCon>
     </el-aside>

@@ -13,13 +13,6 @@
     <a class="el-icon-menu" href="#nowhere" style="color:#222; float: right; padding: 20px">More Functions</a>
     <i class="el-col-menu" style="float: right; font-size: 45px; color: #222;padding-top: 8px"></i>
     <span style="position: absolute; padding-top: 20px; right: 43%; font-size: 20px; font-weight: bold">Data Visualization based on Echarts</span>
-<!--    <el-input-->
-<!--      placeholder="Search"-->
-<!--      prefix-icon="el-icon-search"-->
-<!--      size="medium"-->
-<!--      style="width: 300px;position:absolute;margin-top: 12px;right: 18%"-->
-<!--      v-model="keywords">-->
-<!--    </el-input>-->
   </el-menu>
 </template>
 

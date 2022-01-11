@@ -18,7 +18,7 @@ export default {
       //配置图表
       var option = {
         title: {
-          text: this.title,
+          text: this.$store.getters.getTitle,
         },
         tooltip: {},
         legend: {
@@ -39,6 +39,9 @@ export default {
     }
   },
   mounted() {
+    this.myEcharts();
+  },
+  updated() {
     this.myEcharts();
   }
 }

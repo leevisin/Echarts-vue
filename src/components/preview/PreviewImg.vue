@@ -35,13 +35,9 @@ export default {
         }]
       };
       myChart.setOption(option);
-
     }
   },
   mounted() {
-    this.myEcharts();
-  },
-  updated() {
     this.myEcharts();
   }
 }

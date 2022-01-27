@@ -7,6 +7,7 @@ import Home from '@/components/Home'
 import PreviewIndex from '@/components/preview/PreviewIndex'
 import DataIndex from '@/components/data/DataIndex'
 import UserIndex from '@/components/user/UserIndex'
+import Chart from '@/components/chart/Chart'
 
 Vue.use(Router)
 
@@ -28,6 +29,14 @@ export default new Router({
           path: '/index',
           name: '/AppIndex',
           component: AppIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/chart',
+          name: '/Chart',
+          component: Chart,
           meta: {
             requireAuth: true
           }

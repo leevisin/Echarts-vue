@@ -23,6 +23,6 @@ new Vue({
   render: h =>h(App),
   router,
   store,
-  components: { App, codemirror },
+  components: { App, codemirror},
   template: '<App/>'
 })

@@ -1,5 +1,7 @@
 <template>
-  <ace></ace>
+  <div>
+    Test
+  </div>
 </template>
 
 <script>

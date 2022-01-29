@@ -1,12 +1,10 @@
 <template>
-  <div className="Echarts">
-    Test
-  </div>
+  <ace></ace>
 </template>
 
 <script>
 export default {
-  name: 'UserIndex',
+  name: 'UserIndex'
 }
 </script>
 

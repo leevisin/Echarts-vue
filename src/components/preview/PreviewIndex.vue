@@ -1,9 +1,12 @@
 <template>
   <el-container>
-    <el-aside style="width: 100%">
+    <el-aside style="width: 35%">
       <switch></switch>
       <PreviewCon></PreviewCon>
     </el-aside>
+    <el-main>
+      <PreviewImg></PreviewImg>
+    </el-main>
   </el-container>
 </template>
 

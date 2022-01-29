@@ -1,6 +1,6 @@
 <template>
   <div className="Echarts">
-    <div id="main" style="width: auto;height: 800px;"></div>
+    <div id="main" style="width: 800px;height: 800px;"></div>
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
         }]
       };
       myChart.setOption(option);
+
     }
   },
   mounted() {

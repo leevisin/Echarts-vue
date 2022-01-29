@@ -7,6 +7,8 @@ import store from './store'
 import ElementUI from 'element-ui'
 import * as echarts from 'echarts'
 import 'element-ui/lib/theme-chalk/index.css'
+import ace from 'ace-builds'
+import componentsInstall from './components/install'
 import {codemirror} from 'vue-codemirror'
 
 var axios = require('axios')
@@ -16,6 +18,8 @@ Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(ace)
+Vue.use(componentsInstall)
 
 /* eslint-disable no-new */
 new Vue({

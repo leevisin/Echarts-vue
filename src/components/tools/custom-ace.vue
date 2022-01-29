@@ -83,13 +83,11 @@ const modeArray = [{
 }]
 
 export default {
-  props: {
-    value: String
-  },
+  props: ['option'],
   mounted () {
     this.aceEditor = ace.edit(this.$refs.ace, {
       maxLines: 100,
-      minLines: 50,
+      minLines: 10,
       fontSize: 14,
       value: this.value ? this.value : '',
       theme: this.themePath,
@@ -128,8 +126,21 @@ export default {
     },
     handleWrapChange (wrap) {
       this.aceEditor.getSession().setUseWrapMode(wrap)
+    },
+  },
+  // 设置编辑器内容
+  setAceEditorValue() {
+    this.aceEditor.setValue(this.scriptStr, 1)
+  },
+  watch: {
+    // 监听父组件传来的值
+    option: function(newVal,oldVal){
+      // 将新值，也就是option编辑器内容字符串，赋值给scriptStr
+      this.scriptStr = newVal
+      // 设置编辑器内容
+      this.setAceEditorValue()
     }
-  }
+  },
 }
 </script>
 

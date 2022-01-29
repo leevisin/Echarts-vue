@@ -2,33 +2,33 @@
   <div class="ace-container">
     <div class="ace-editor" ref="ace"></div>
 
-    <div class="config-panel" v-show="toggle">
-      <div>
-        <div class="item">
-          <label class="title">语言</label>
-          <el-select class="value" v-model="modePath" @change="handleModelPathChange" size="mini" value-key="name">
-            <el-option v-for="mode in modeArray"
-                       :key="mode.name"
-                       :label="mode.name"
-                       :value="mode.path">
-            </el-option>
-          </el-select>
-        </div>
+<!--    <div class="config-panel" v-show="toggle">-->
+<!--      <div>-->
+<!--        <div class="item">-->
+<!--          <label class="title">语言</label>-->
+<!--          <el-select class="value" v-model="modePath" @change="handleModelPathChange" size="mini" value-key="name">-->
+<!--            <el-option v-for="mode in modeArray"-->
+<!--                       :key="mode.name"-->
+<!--                       :label="mode.name"-->
+<!--                       :value="mode.path">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </div>-->
 
-        <div class="item">
-          <label class="title">换行</label>
-          <el-select class="value" v-model="wrap" @change="handleWrapChange" size="mini" value-key="name">
-            <el-option v-for="wrap in wrapArray"
-                       :key="wrap.name"
-                       :label="wrap.name"
-                       :value="wrap.value">
-            </el-option>
-          </el-select>
-        </div>
-      </div>
-    </div>
+<!--        <div class="item">-->
+<!--          <label class="title">换行</label>-->
+<!--          <el-select class="value" v-model="wrap" @change="handleWrapChange" size="mini" value-key="name">-->
+<!--            <el-option v-for="wrap in wrapArray"-->
+<!--                       :key="wrap.name"-->
+<!--                       :label="wrap.name"-->
+<!--                       :value="wrap.value">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div class="bookmarklet" @click="toggleConfigPanel"></div>
+<!--    <div class="bookmarklet" @click="toggleConfigPanel"></div>-->
   </div>
 </template>
 

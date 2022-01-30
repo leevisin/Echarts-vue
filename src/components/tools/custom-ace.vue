@@ -1,7 +1,6 @@
 <template>
   <div class="ace-container">
     <div class="ace-editor" ref="ace"></div>
-
 <!--    <div class="config-panel" v-show="toggle">-->
 <!--      <div>-->
 <!--        <div class="item">-->
@@ -27,7 +26,7 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
-
+    <button v-on:click="sendChartOption">Button</button>
 <!--    <div class="bookmarklet" @click="toggleConfigPanel"></div>-->
   </div>
 </template>
@@ -130,6 +129,14 @@ export default {
     // 设置编辑器内容
     setAceEditorValue() {
       this.aceEditor.setValue(this.scriptStr, 1)
+    },
+    // 点击运行按钮向图表组件传输新的图表配置
+    sendChartOption() {
+      // 点击运行按钮获取编辑器内容，保存到scriptStr
+      this.scriptStr = this.aceEditor.getValue()
+      let script = this.scriptStr
+      // 将新的 编辑器内容 传给图表组件
+      this.bus.$emit('sendScript',script)
     },
   },
   watch: {

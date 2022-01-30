@@ -13,6 +13,7 @@ import {codemirror} from 'vue-codemirror'
 
 var axios = require('axios')
 axios.defaults.baseURL = "http://localhost:8443/api"
+Vue.prototype.bus = new Vue()
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false

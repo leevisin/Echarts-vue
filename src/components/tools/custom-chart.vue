@@ -6,11 +6,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      title: 'Echarts入门示例'
-    }
-  },
   methods: {
     initChart() {
       let myChart = this.$echarts.init(this.$refs.eCRef);
@@ -45,6 +40,7 @@ export default {
   },
   mounted() {
     this.initChart();
+    this.sendOption();
   }
 }
 </script>

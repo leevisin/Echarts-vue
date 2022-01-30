@@ -127,10 +127,10 @@ export default {
     handleWrapChange (wrap) {
       this.aceEditor.getSession().setUseWrapMode(wrap)
     },
-  },
-  // 设置编辑器内容
-  setAceEditorValue() {
-    this.aceEditor.setValue(this.scriptStr, 1)
+    // 设置编辑器内容
+    setAceEditorValue() {
+      this.aceEditor.setValue(this.scriptStr, 1)
+    },
   },
   watch: {
     // 监听父组件传来的值

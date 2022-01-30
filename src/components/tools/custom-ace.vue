@@ -137,6 +137,7 @@ export default {
       let script = this.scriptStr
       // 将新的 编辑器内容 传给图表组件
       this.bus.$emit('sendScript',script)
+      console.log(script)
     },
   },
   watch: {

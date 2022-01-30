@@ -4,7 +4,7 @@
       <ace :option="scriptStr"></ace>
     </div>
     <div class="screen-body">
-      <chart ref="eCRef" @sendOption=getOption></chart>
+      <chart ref="chartRef" @sendOption=getOption></chart>
     </div>
   </div>
 </template>

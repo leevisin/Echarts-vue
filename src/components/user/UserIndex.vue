@@ -4,7 +4,7 @@
     <!--        <ace :option="scriptStr"></ace>-->
     <!--      </div>-->
     <div class="screen-body">
-      <div ref="eCRef" style="width: 500px;height: 400px;" @sendOption=getOption></div>
+      <div ref="chartRef" style="width: 500px;height: 400px;" @sendOption=getOption></div>
     </div>
   </div>
   <!--    <div>-->
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     initChart() {
-      let myChart = this.$echarts.init(this.$refs.eCRef);
+      let myChart = this.$echarts.init(this.$refs.chartRef);
       //配置图表
       let option = {
         title: {

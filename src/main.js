@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import * as echarts from 'echarts'
+import ecStat from 'echarts-stat';
 import 'element-ui/lib/theme-chalk/index.css'
 import ace from 'ace-builds'
 import componentsInstall from './components/install'
@@ -16,6 +17,7 @@ axios.defaults.baseURL = "http://localhost:8443/api"
 Vue.prototype.bus = new Vue()
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
+Vue.prototype.$ecStat = ecStat
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

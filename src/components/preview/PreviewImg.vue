@@ -13,10 +13,11 @@ export default {
       res = JSON.stringify(res,null,2)
       // 拼接成要返回给编辑器内容的字符串格式，准备传给编辑器子组件
       this.$store.commit('setScriptStr', `option = ${res};`);
+      console.log(this.$store.getters.getScriptStr)
     }
   },
   created() {
-    console.log(this.$store.getters.getScriptStr)
+    // console.log(this.$store.getters.getScriptStr)
   }
 }
 </script>

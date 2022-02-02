@@ -11,7 +11,8 @@ export default {
     },
   },
   created() {
-    console.log(this.scriptStr)
+    // this.scriptStr = this.$store.getters.getScriptStr
+    console.log(this.$store.getters.getScriptStr)
   }
 }
 </script>

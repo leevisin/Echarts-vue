@@ -7,7 +7,8 @@ const store = new Vuex.Store({
   state: {
     userName: 'San Zhang',
     userAge: 2,
-    title: 'Echarts Demo'
+    title: 'Echarts Demo',
+    scriptStr: '',
   },
   mutations: {
     setUserName(state, aUserName){
@@ -18,6 +19,9 @@ const store = new Vuex.Store({
     },
     setTitle(state, aTitle){
       state.title = aTitle;
+    },
+    setScriptStr(state, aScriptStr){
+      state.scriptStr = aScriptStr;
     },
   },
   getters: {
@@ -30,6 +34,9 @@ const store = new Vuex.Store({
     getTitle(state) {
       return state.title;
     },
+    getScriptStr(state) {
+      return state.scriptStr;
+    },
   },
   actions: {
     getAge(context) {
@@ -40,7 +47,10 @@ const store = new Vuex.Store({
     },
     getTitle(context) {
       context.commit('getTitle');
-    }
+    },
+    getScriptStr(context) {
+      context.commit('getScriptStr');
+    },
   }
 })
 

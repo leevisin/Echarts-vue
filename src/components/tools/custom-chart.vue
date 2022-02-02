@@ -15,6 +15,11 @@ export default {
           text: 'Title Test',
         },
         tooltip: {},
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
         legend: {
           data: ['销量']
         },

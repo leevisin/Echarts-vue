@@ -1,45 +1,22 @@
 <template>
   <div className="Echarts">
-    <div id="main" style="width: 800px;height: 800px;"></div>
+    <chart ref="chartRef" @sendOption=getOption></chart>
   </div>
 </template>
 
 <script>
 export default {
   name: 'PreviewImg',
-  data() {
-    return {
-      title: 'Echarts入门示例'
-    }
-  },
   methods: {
-    myEcharts() {
-      var myChart = this.$echarts.init(document.getElementById('main'));
-      //配置图表
-      var option = {
-        title: {
-          text: this.$store.getters.getTitle,
-        },
-        tooltip: {},
-        legend: {
-          data: ['销量']
-        },
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
-      };
-      myChart.setOption(option);
-
+    getOption(res) {
+      // 接收图表组件传来的option对象，将其转换为字符串形式
+      res = JSON.stringify(res,null,2)
+      // 拼接成要返回给编辑器内容的字符串格式，准备传给编辑器子组件
+      this.$store.commit('setScriptStr', `option = ${res};`);
     }
   },
-  mounted() {
-    this.myEcharts();
+  created() {
+    console.log(this.$store.getters.getScriptStr)
   }
 }
 </script>

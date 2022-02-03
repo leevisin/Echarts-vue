@@ -2,7 +2,7 @@
   <div class="ace-container">
     <button class="run-button" @click="sendChartOption">Run</button>
     <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
-      上传excel
+      Upload
     </vue-xlsx-table>
     <button class="clear-button" v-on:click="resetChartData">
       Clear
@@ -169,6 +169,7 @@ export default {
 <style lang='scss' scoped>
 .ace-container {
   position: relative;
+  margin-top: 18px;
 
   .config-panel {
     position: absolute;
@@ -210,7 +211,7 @@ export default {
   .run-button {
     position: absolute;
     right: 0;
-    top: 0;
+    top: -28px;
     width: 40px;
     height: 28px;
     z-index: 2;
@@ -218,8 +219,8 @@ export default {
 
   .xls-button {
     position: absolute;
-    right: 80px;
-    top: 0;
+    right: 74px;
+    top: -28px;
     width: 90px;
     height: 28px;
     z-index: 2;
@@ -228,7 +229,7 @@ export default {
   .clear-button {
     position: absolute;
     right: 40px;
-    top: 0;
+    top: -28px;
     width: 50px;
     height: 28px;
     z-index: 2;

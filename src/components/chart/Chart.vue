@@ -22,7 +22,7 @@ export default {
       res = JSON.stringify(res,null,2)
       // 拼接成要返回给编辑器内容的字符串格式，准备传给编辑器子组件
       this.scriptStr = `option = ${res};`
-    }
+    },
   },
   created() {
     console.info(this.scriptStr);

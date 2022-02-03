@@ -69,10 +69,15 @@ export default {
     this.sendOption();
     // 接收编辑器组件传来的新的图表配置信息代码
     this.bus.$on('sendScript', res => {
-      // 保存给图表组件的chartOption
-      this.chartOption = res
-      // 传入新的配置代码，重新渲染图表
-      this.changeChart(this.chartOption)
+      this.chartOption = res[0]
+      if (res[1] === null) {
+        // 如果接收到的excel表格数据为空，说明可能已经在编辑器内容中定义好了data数据源，不用再做字符串拼接，那么直接渲染图表
+        this.changeChart(this.chartOption)
+      } else {
+        // 如果表格数据不为空，则说明需要做字符串拼接，否则运行后会报data未定义，之后再渲染图表
+        this.chartOption = `let data = ` + JSON.stringify(res[1]) + ';' + res[0]
+        this.changeChart(this.chartOption)
+      }
     })
   }
 }

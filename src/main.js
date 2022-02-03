@@ -10,6 +10,7 @@ import ecStat from 'echarts-stat';
 import 'element-ui/lib/theme-chalk/index.css'
 import ace from 'ace-builds'
 import componentsInstall from './components/install'
+import vueXlsxTable from 'vue-xlsx-table'
 import {codemirror} from 'vue-codemirror'
 
 var axios = require('axios')
@@ -19,6 +20,7 @@ Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$ecStat = ecStat
 Vue.config.productionTip = false
+Vue.use(vueXlsxTable,{rABS:false})
 
 Vue.use(ElementUI)
 Vue.use(ace)

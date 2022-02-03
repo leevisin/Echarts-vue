@@ -1,5 +1,12 @@
 <template>
   <div class="ace-container">
+    <button class="run-button" @click="sendChartOption">Run</button>
+    <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
+      上传excel
+    </vue-xlsx-table>
+    <button class="clear-button" v-on:click="resetChartData">
+      Clear
+    </button>
     <div class="ace-editor" ref="ace"></div>
 <!--    <div class="config-panel" v-show="toggle">-->
 <!--      <div>-->
@@ -26,7 +33,6 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
-    <button v-on:click="sendChartOption">Button</button>
 <!--    <div class="bookmarklet" @click="toggleConfigPanel"></div>-->
   </div>
 </template>
@@ -114,6 +120,15 @@ export default {
     }
   },
   methods: {
+    // 点击上传按钮获取excel表数据
+    handleSelectedFile(convertedData) {
+      // 将数据保存到data中
+      this.data = convertedData.body
+    },
+    // 点击重置数据按钮，清除excel表数据
+    resetChartData(){
+      this.data = null
+    },
     toggleConfigPanel () {
       this.toggle = !this.toggle
     },
@@ -136,8 +151,7 @@ export default {
       this.scriptStr = this.aceEditor.getValue()
       let script = this.scriptStr
       // 将新的 编辑器内容 传给图表组件
-      this.bus.$emit('sendScript',script)
-      console.log(script)
+      this.bus.$emit('sendScript',[script,this.data])
     },
   },
   watch: {
@@ -182,7 +196,7 @@ export default {
   .bookmarklet {
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: 0;
     width: 20px;
     height: 20px;
     z-index: 2;
@@ -191,6 +205,33 @@ export default {
     border-style: solid;
     border-color: lightblue gray gray rgb(206, 173, 230);
     border-image: initial;
+  }
+
+  .run-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 28px;
+    z-index: 2;
+  }
+
+  .xls-button {
+    position: absolute;
+    right: 80px;
+    top: 0;
+    width: 90px;
+    height: 28px;
+    z-index: 2;
+  }
+
+  .clear-button {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    width: 50px;
+    height: 28px;
+    z-index: 2;
   }
 }
 </style>

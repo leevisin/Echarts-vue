@@ -16,6 +16,8 @@
     "echarts": "^5.2.2",
     "echarts-stat": "^1.2.0",
     "element-ui": "^2.15.6",
+    "file-saver": "^2.0.5",
+    "jquery": "^3.6.0",
     "style-loader": "^3.3.1",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.6",

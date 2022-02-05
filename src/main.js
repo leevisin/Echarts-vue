@@ -9,6 +9,7 @@ import * as echarts from 'echarts'
 import ecStat from 'echarts-stat';
 import 'element-ui/lib/theme-chalk/index.css'
 import ace from 'ace-builds'
+import jq from 'jquery'
 import componentsInstall from './components/install'
 import vueXlsxTable from 'vue-xlsx-table'
 import {codemirror} from 'vue-codemirror'
@@ -16,6 +17,7 @@ import {codemirror} from 'vue-codemirror'
 var axios = require('axios')
 axios.defaults.baseURL = "http://localhost:8443/api"
 Vue.prototype.bus = new Vue()
+window.$ = jq
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$ecStat = ecStat

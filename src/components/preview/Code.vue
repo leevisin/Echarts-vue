@@ -8,16 +8,22 @@
 <script>
 export default {
   name: 'Code',
+  data() {
+    return {
+      scriptStr: ''
+    }
+  },
   methods: {
+    passScriptStr() {
+      this.scriptStr = this.$store.getters.getScriptStr
+    },
     showScriptStr() {
-      // console.log(this.$store.getters.getScriptStr)
+      this.scriptStr = this.$store.getters.getScriptStr
       console.log(this.scriptStr)
     },
   },
-  computed: {
-    scriptStr: function (){
-      return this.$store.getters.getScriptStr
-    },
+  mounted() {
+    this.passScriptStr()
   },
   created() {
     // this.scriptStr = this.$store.getters.getScriptStr

@@ -149,6 +149,9 @@ export default {
     sendChartOption() {
       // 点击运行按钮获取编辑器内容，保存到scriptStr
       this.scriptStr = this.aceEditor.getValue()
+      console.log(this.scriptStr)
+      // 更新store中scriptStr的值
+      this.$store.commit('setScriptStr', this.scriptStr)
       let script = this.scriptStr
       // 将新的 编辑器内容 传给图表组件
       this.bus.$emit('sendScript',[script,this.data])

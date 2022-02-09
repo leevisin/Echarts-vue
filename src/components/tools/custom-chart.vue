@@ -10,6 +10,8 @@ export default {
     initChart() {
       let myChart = this.$echarts.init(this.$refs.chartRef);
       //配置图表
+      // let index = this.$store.getters.getScriptStr.indexOf('=')
+      // let option = this.$store.getters.getScriptStr.substring(index+1, this.$store.getters.getScriptStr.length-1)
       let option = {
         title: {
           text: 'Title Test',
@@ -33,6 +35,8 @@ export default {
           data: [5, 20, 36, 10, 10, 20]
         }]
       };
+      console.log(option)
+      // let option = this.$store.getters.getScriptStr
       myChart.setOption(option)
       // Save Instance
       this.chartInstance = myChart

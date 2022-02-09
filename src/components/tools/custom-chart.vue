@@ -10,8 +10,11 @@ export default {
     initChart() {
       let myChart = this.$echarts.init(this.$refs.chartRef);
       //配置图表
-      // let index = this.$store.getters.getScriptStr.indexOf('=')
-      // let option = this.$store.getters.getScriptStr.substring(index+1, this.$store.getters.getScriptStr.length-1)
+      // let str = this.$store.getters.getScriptStr
+      // let index = str.indexOf('=')
+      // console.log(str.substring(index+1, str.length-1))
+      // let option = str.substring(index+1, str.length-1)
+      // let option = JSON.parse(str.substring(index+1, str.length-1))
       let option = {
         title: {
           text: 'Title Test',
@@ -22,18 +25,19 @@ export default {
             saveAsImage: {}
           }
         },
-        legend: {
-          data: ['销量']
-        },
         xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            type: 'line'
+          }
+        ]
       };
       console.log(option)
       // let option = this.$store.getters.getScriptStr

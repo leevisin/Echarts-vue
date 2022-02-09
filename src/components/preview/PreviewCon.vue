@@ -33,5 +33,8 @@
 </script>
 
 <style scoped>
-
+.el-tabs .el-tab-pane {
+  max-height: 850px;
+  overflow: auto;
+}
 </style>

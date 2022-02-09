@@ -18,18 +18,19 @@ const store = new Vuex.Store({
       '            saveAsImage: {}\n' +
       '          }\n' +
       '        },\n' +
-      '        legend: {\n' +
-      '          data: [\'销量\']\n' +
-      '        },\n' +
       '        xAxis: {\n' +
-      '          data: [\'衬衫\', \'羊毛衫\', \'雪纺衫\', \'裤子\', \'高跟鞋\', \'袜子\']\n' +
+      '          type: \'category\',\n' +
+      '          data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +
       '        },\n' +
-      '        yAxis: {},\n' +
-      '        series: [{\n' +
-      '          name: \'销量\',\n' +
-      '          type: \'bar\',\n' +
-      '          data: [5, 20, 36, 10, 10, 20]\n' +
-      '        }]\n' +
+      '        yAxis: {\n' +
+      '          type: \'value\'\n' +
+      '        },\n' +
+      '        series: [\n' +
+      '          {\n' +
+      '            data: [150, 230, 224, 218, 135, 147, 260],\n' +
+      '            type: \'line\'\n' +
+      '          }\n' +
+      '        ]\n' +
       '      };',
   },
   mutations: {

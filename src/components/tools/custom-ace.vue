@@ -1,12 +1,14 @@
 <template>
   <div class="ace-container">
-    <button class="run-button" @click="sendChartOption">Run</button>
-    <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
-      Upload
-    </vue-xlsx-table>
-    <button class="clear-button" v-on:click="resetChartData">
-      Clear
-    </button>
+    <div>
+      <button class="run-button" @click="sendChartOption">Run</button>
+      <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
+        Upload
+      </vue-xlsx-table>
+      <button class="clear-button" v-on:click="resetChartData">
+        Clear
+      </button>
+    </div>
     <div class="ace-editor" ref="ace"></div>
 <!--    <div class="config-panel" v-show="toggle">-->
 <!--      <div>-->
@@ -92,7 +94,7 @@ export default {
   mounted () {
     this.aceEditor = ace.edit(this.$refs.ace, {
       maxLines: 100,
-      minLines: 10,
+      minLines: 48,
       fontSize: 14,
       value: this.value ? this.value : '',
       theme: this.themePath,
@@ -113,7 +115,7 @@ export default {
       aceEditor: null,
       toggle: false,
       wrap: true,
-      themePath: 'ace/theme/monokai',
+      // themePath: 'ace/theme/cloud',
       modePath: 'ace/mode/javascript',
       modeArray: modeArray,
       wrapArray: wrapArray
@@ -172,7 +174,7 @@ export default {
 <style lang='scss' scoped>
 .ace-container {
   position: relative;
-  margin-top: 18px;
+  margin-top: 28px;
 
   .config-panel {
     position: absolute;

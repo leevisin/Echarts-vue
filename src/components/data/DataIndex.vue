@@ -19,8 +19,9 @@
     <el-button @click="exportToExcel">导出</el-button>
     <el-table style="width: auto" border :data="tableData" id="tableData">
       <template v-for="(item,index) in tableHead">
-        <el-table-column :prop="item.column_name" :label="item.column_comment" :key="index"
-                         v-if="item.column_name !== 'id'"></el-table-column>
+        <el-table-column :key="index" :prop="item.column_name" :label="item.column_comment"
+                         v-if="item.column_name !== 'id'">
+        </el-table-column>
       </template>
     </el-table>
   </div>
@@ -120,6 +121,9 @@ export default {
         }
         tableDataList.push(tableData1);
       }
+      console.log("tableDataList");
+      console.log(JSON.stringify(tableDataList))
+      console.log(tableDataList);
       this.tableData = tableDataList;//给表格内容赋值
     },
 //导出Excel

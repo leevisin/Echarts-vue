@@ -79,7 +79,7 @@ export default {
       } else {
         // 如果表格数据不为空，则说明需要做字符串拼接，否则运行后会报data未定义，之后再渲染图表
         this.chartOption = `let data = ` + JSON.stringify(res[1]) + ';' + '\n' + res[0]
-        console.log(this.chartOption)
+        // console.log(this.chartOption)
         this.changeChart(this.chartOption)
       }
     })

@@ -13,10 +13,16 @@
         icon="el-icon-upload"
         size="small"
         type="primary">
-        上传文件
+        Upload
+      </el-button>
+      <el-button
+        icon="el-icon-download"
+        size="small"
+        type="primary"
+        @click="exportToExcel">
+        Download
       </el-button>
     </el-upload>
-    <el-button @click="exportToExcel">导出</el-button>
     <el-table style="width: auto" border :data="tableData" id="tableData">
       <template v-for="(item,index) in tableHead">
         <el-table-column :key="index" :prop="item.column_name" :label="item.column_comment"

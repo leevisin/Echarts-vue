@@ -44,7 +44,7 @@ export default {
   },
   //data结束
   methods: {
-//导入
+    //导入
     importExcel(file) {
       const types = file.name.split(".")[1];
       const fileType = ["xlsx", "xlc", "xlm", "xls", "xlt"].some(
@@ -77,8 +77,12 @@ export default {
           this.wb.SheetNames.forEach(sheetName => {
             result.push({
               sheetName: sheetName,
-              sheet: XLSX.utils.sheet_to_json(this.wb.Sheets[sheetName])
-            });
+              sheet: XLSX.utils.sheet_to_json(this.wb.Sheets[sheetName],
+                {
+                  head: 0,
+                  defval: " "
+                })
+          });
           });
           resolve(result);
         };
@@ -109,18 +113,23 @@ export default {
       for (let j = 0; j < outData.length; j++) {
         const tableData1 = {};
         for (let k = 0; k < tableHeadList.length; k++) {
+          // 第一行的数据
           console.log("表头字段："+tableHeadList[k]['column_name']+",表头数据：" + tableHeadList[k]['column_comment']);
-
           for (const outDataKey in outData[j]) {
+            console.log("outDataKey = " + outDataKey)
             if (outData[j].hasOwnProperty(outDataKey)) {//对于（可能迭代异常（自定义/继承）成员，可能缺少 hasOwnProperty 检查）的错误的解决，用if语句判断
               if (tableHeadList[k]['column_comment'] === outDataKey) {
                 tableData1[tableHeadList[k]['column_name']] = outData[j][outDataKey];
+                console.log("tableHeadList[k]['column_comment'] = " + outData[j][outDataKey])
               }
             }
           }
         }
         tableDataList.push(tableData1);
       }
+      console.log("tableHeadList");
+      console.log(JSON.stringify(tableHeadList))
+      console.log(tableHeadList);
       console.log("tableDataList");
       console.log(JSON.stringify(tableDataList))
       console.log(tableDataList);

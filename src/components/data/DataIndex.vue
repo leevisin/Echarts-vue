@@ -135,7 +135,7 @@ export default {
       console.log(tableDataList);
       this.tableData = tableDataList;//给表格内容赋值
     },
-//导出Excel
+    //导出Excel
     exportToExcel () {
       let et = XLSX.utils.table_to_book(document.getElementById('tableData')); //此处传入table的DOM节点
       let etOut = XLSX.write(et, {

@@ -60,8 +60,12 @@
       }
     },
     created() {
-      console.info(this.userName);
-      console.info(this.userAge);
+      // console.info(this.userName);
+      // console.info(this.userAge);
+      console.log("Welcome to my page aPAout expression page!".match(/pa/gi));
+      const str = this.$store.getters.getScriptStr;
+      // let regExp = new RegExp("/(?s)title: (.*?)}/");
+      // console.log(str.regExp);
     }
   }
 </script>

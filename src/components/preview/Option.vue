@@ -46,6 +46,11 @@
       },
       updateTit(){
         this.$store.commit('setTitle', this.titleTmp)
+        let strTmp = this.$store.getters.getScriptStr
+        strTmp = strTmp.replace(/'text':(.*)|text:(.*)/gm, "text: this.\$store.getters.getTitle")
+        console.log(strTmp)
+        this.$store.commit('setScriptStr', strTmp)
+        this.bus.$emit('sendScript',[strTmp])
       }
     },
     computed: {
@@ -64,8 +69,9 @@
       // console.info(this.userAge);
       console.log("Welcome to my page aPAout expression page!".match(/pa/gi));
       const str = this.$store.getters.getScriptStr;
-      // let regExp = new RegExp("/(?s)title: (.*?)}/");
-      // console.log(str.regExp);
+      console.log(str);
+      console.log(str.match(/text:(.*)\n/));
+      console.log(str.match(/'text':(.*)|text:(.*)/gm))
     }
   }
 </script>

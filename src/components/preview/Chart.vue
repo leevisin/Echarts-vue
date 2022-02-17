@@ -3,6 +3,7 @@
     <el-row style="height: 800px;">
 <!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
+                  disabled = !disabled
                   v-for="item in charts"
                   :key="item.id">
         <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"
@@ -38,7 +39,6 @@ export default {
           cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/bar-simple.webp?_v_=1635740497748',
           title: 'Basic Bar',
           type: 'bar',
-          data: '',
         },
         {
           cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/pie-simple.webp?_v_=1635740497748',

@@ -7,31 +7,31 @@ const store = new Vuex.Store({
   state: {
     userName: 'San Zhang',
     userAge: 2,
-    title: 'Echarts Demo',
+    title: '',
     scriptStr: 'option = {\n' +
-      '        title: {\n' +
-      '          text: \'Title Test\',\n' +
-      '        },\n' +
-      '        tooltip: {},\n' +
-      '        toolbox: {\n' +
-      '          feature: {\n' +
-      '            saveAsImage: {}\n' +
-      '          }\n' +
-      '        },\n' +
-      '        xAxis: {\n' +
-      '          type: \'category\',\n' +
-      '          data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +
-      '        },\n' +
-      '        yAxis: {\n' +
-      '          type: \'value\'\n' +
-      '        },\n' +
-      '        series: [\n' +
-      '          {\n' +
-      '            data: [150, 230, 224, 218, 135, 147, 260],\n' +
-      '            type: \'line\'\n' +
-      '          }\n' +
-      '        ]\n' +
-      '      };',
+      '    title: {\n' +
+      '      text: \'Title Test\',\n' +
+      '    },\n' +
+      '    tooltip: {},\n' +
+      '    toolbox: {\n' +
+      '      feature: {\n' +
+      '        saveAsImage: {}\n' +
+      '      }\n' +
+      '    },\n' +
+      '    xAxis: {\n' +
+      '      type: \'category\',\n' +
+      '      data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +
+      '    },\n' +
+      '    yAxis: {\n' +
+      '      type: \'value\'\n' +
+      '    },\n' +
+      '    series: [\n' +
+      '      {\n' +
+      '        data: [150, 230, 224, 218, 135, 147, 260],\n' +
+      '        type: \'line\'\n' +
+      '      }\n' +
+      '    ]\n' +
+      '};',
   },
   mutations: {
     setUserName(state, aUserName){

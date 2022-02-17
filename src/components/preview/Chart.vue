@@ -3,7 +3,7 @@
     <el-row style="height: 800px;">
 <!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
-                  disabled = !disabled
+                  disabled
                   v-for="item in charts"
                   :key="item.id">
         <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"
@@ -15,6 +15,7 @@
             <div class="title">
               <a href="">{{item.title}}</a>
             </div>
+            <el-button type="text" class="button">操作按钮</el-button>
           </div>
         </el-card>
       </el-tooltip>

@@ -1,6 +1,9 @@
 <template>
   <div class="ace-container">
     <div>
+      <button class="el-icon-refresh-left" v-on:click="refreshChartData">
+        Refresh
+      </button>
       <button class="run-button" @click="sendChartOption">Run</button>
       <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
         Upload
@@ -158,6 +161,11 @@ export default {
       // 将新的 编辑器内容 传给图表组件
       this.bus.$emit('sendScript',[script,this.data])
     },
+    // Use button to refresh ace is the same as scriptStr
+    refreshChartData() {
+      this.scriptStr = this.$store.getters.getScriptStr
+      this.setAceEditorValue()
+    },
   },
   watch: {
     // 监听父组件传来的值
@@ -237,6 +245,14 @@ export default {
     top: -28px;
     width: 50px;
     height: 28px;
+    z-index: 2;
+  }
+
+  .el-icon-refresh-left {
+    position: absolute;
+    left: 0px;
+    top: -28px;
+    height: 25px;
     z-index: 2;
   }
 }

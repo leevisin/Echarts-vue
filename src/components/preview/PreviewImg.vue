@@ -13,7 +13,10 @@ export default {
       res = JSON.stringify(res,null,2)
       // 拼接成要返回给编辑器内容的字符串格式，准备传给编辑器子组件
       res = res.replace(/"/gm,'\'')
-      this.$store.commit('setScriptStr', `option = ${res};`);
+      // Only the first time need to set scriptStr through chart
+      if (this.$store.getters.getInit == '0') {
+        this.$store.commit('setScriptStr', `option = ${res};`);
+      }
       console.log(this.$store.getters.getScriptStr)
     }
   },

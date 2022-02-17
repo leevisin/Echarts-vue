@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     userName: 'San Zhang',
     userAge: 2,
+    init: '0',
     title: '',
     type: '',
     scriptStr: 'option = {\n' +
@@ -41,6 +42,9 @@ const store = new Vuex.Store({
     setUserAge(state, aUserAge){
       state.userAge = aUserAge;
     },
+    setInit(state, aInit){
+      state.init = aInit;
+    },
     setTitle(state, aTitle){
       state.title = aTitle;
     },
@@ -58,6 +62,9 @@ const store = new Vuex.Store({
     getAgeOfNextYear(state) {
       return state.userAge + 1;
     },
+    getInit(state) {
+      return state.init;
+    },
     getTitle(state) {
       return state.title;
     },
@@ -74,6 +81,9 @@ const store = new Vuex.Store({
     },
     getAgeOfNextYear(context) {
       context.commit('getAgeOfNextYear');
+    },
+    getInit(context) {
+      context.commit('getInit');
     },
     getTitle(context) {
       context.commit('getTitle');

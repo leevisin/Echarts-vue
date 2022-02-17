@@ -34,13 +34,13 @@ export default {
           }
         ]
       };
-      console.log(option)
-      // let option = this.$store.getters.getScriptStr
       myChart.setOption(option)
       // Save Instance
       this.chartInstance = myChart
       // Save option into chartOption, and chartOption is an object
       this.chartOption = option
+      // Have initialized to set the flag
+      this.$store.commit('setInit','1')
     },
     sendOption() {
       this.$emit('sendOption', this.chartOption)
@@ -68,8 +68,15 @@ export default {
     },
   },
   mounted() {
-    this.initChart();
-    this.sendOption();
+    // this.$store.getters.getInit == '0' is the first time else not
+    if (this.$store.getters.getInit == '0') {
+      this.initChart();
+      this.sendOption();
+    } else {
+      this.initChart();
+      this.changeChart(this.$store.getters.getScriptStr);
+    }
+
     // 接收编辑器组件传来的新的图表配置信息代码
     this.bus.$on('sendScript', res => {
       this.chartOption = res[0]

@@ -47,7 +47,11 @@
       updateTit(){
         this.$store.commit('setTitle', this.titleTmp)
         let strTmp = this.$store.getters.getScriptStr
-        strTmp = strTmp.replace(/'text':(.*)|text:(.*)/gm, "text: this.\$store.getters.getTitle")
+        if (strTmp.match(/'text':(.*)|text:(.*)/gm) != null) {
+          strTmp = strTmp.replace(/'text':(.*)|text:(.*)/gm, "text: '" + this.$store.getters.getTitle + "'")
+        } else {
+          strTmp = strTmp.replace(/{/, "{\n  title: {\n    text: '" +this.$store.getters.getTitle +"'\n  },")
+        }
         console.log(strTmp)
         this.$store.commit('setScriptStr', strTmp)
         this.bus.$emit('sendScript',[strTmp])

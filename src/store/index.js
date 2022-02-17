@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     userName: 'San Zhang',
     userAge: 2,
     title: '',
+    type: '',
     scriptStr: 'option = {\n' +
       '    title: {\n' +
       '      text: \'Title Test\',\n' +
@@ -43,6 +44,9 @@ const store = new Vuex.Store({
     setTitle(state, aTitle){
       state.title = aTitle;
     },
+    setType(state, aType){
+      state.type = aType;
+    },
     setScriptStr(state, aScriptStr){
       state.scriptStr = aScriptStr;
     },
@@ -57,6 +61,9 @@ const store = new Vuex.Store({
     getTitle(state) {
       return state.title;
     },
+    getType(state) {
+      return state.type;
+    },
     getScriptStr(state) {
       return state.scriptStr;
     },
@@ -70,6 +77,9 @@ const store = new Vuex.Store({
     },
     getTitle(context) {
       context.commit('getTitle');
+    },
+    getType(context) {
+      context.commit('getType');
     },
     getScriptStr(context) {
       context.commit('getScriptStr');

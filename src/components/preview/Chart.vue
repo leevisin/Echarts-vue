@@ -6,7 +6,7 @@
                   disabled
                   v-for="item in charts"
                   :key="item.id">
-        <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"
+        <el-card style="width: 290px;margin-bottom: 20px;height: 300px;float: left;margin-right: 15px" class="chart"
                  bodyStyle="padding:10px" shadow="hover">
           <div class="cover">
             <img :src="item.cover" alt="cover">
@@ -15,7 +15,7 @@
             <div class="title">
               <a href="">{{item.title}}</a>
             </div>
-            <el-button type="text" class="button">操作按钮</el-button>
+            <el-button class="button" v-on:click="changeChart(item.type)">Select</el-button>
           </div>
         </el-card>
       </el-tooltip>
@@ -52,12 +52,25 @@ export default {
         {
           cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/pie-doughnut.webp?_v_=1635740497748',
           title: 'Doughnut Chart',
-          type: 'pie',
+          type: 'line',
           data: '',
           press: '',
           abs: ''
         }
       ]
+    }
+  },
+  methods: {
+    changeChart(type) {
+      this.$store.commit('setType', type)
+      let strTmp = this.$store.getters.getScriptStr
+      if (strTmp.match(/'type': 'line'|type: 'line'/gm) != null) {
+        strTmp = strTmp.replace(/'type': 'line'|type: 'line'/gm, "type: '" + type + "'")
+      }
+      console.log(strTmp)
+      this.$store.commit('setScriptStr', strTmp)
+      this.$store.commit('setType', type)
+      this.bus.$emit('sendScript',[strTmp])
     }
   }
 }
@@ -81,6 +94,12 @@ export default {
   .title {
     font-size: 14px;
     text-align: left;
+  }
+
+  .button {
+    font-size: 14px;
+    text-align: right;
+    margin-right: 0px;
   }
 
   .type {

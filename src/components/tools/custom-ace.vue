@@ -1,7 +1,7 @@
 <template>
   <div class="ace-container">
     <div>
-      <button class="el-icon-refresh-left" v-on:click="refreshChartData">
+      <button class="el-icon-refresh" v-on:click="refreshChartData">
         Refresh
       </button>
       <button class="run-button" @click="sendChartOption">Run</button>
@@ -263,7 +263,7 @@ export default {
     z-index: 2;
   }
 
-  .el-icon-refresh-left {
+  .el-icon-refresh {
     position: absolute;
     left: 0px;
     top: -28px;

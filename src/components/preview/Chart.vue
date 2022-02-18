@@ -126,12 +126,12 @@ export default {
   methods: {
     changeChart(type, data) {
       this.$store.commit('setType', type)
-      console.log(type)
-      let strTmp = this.$store.getters.getScriptStr
-      if (strTmp.match(/'type': 'line'|type: 'line'|'type': 'bar'|type: 'bar'|'type': 'pie'|type: 'pie'/gm) != null) {
-        strTmp = strTmp.replace(/'type': 'line'|type: 'line'|'type': 'bar'|type: 'bar'|'type': 'pie'|type: 'pie'/gm, "type: '" + type + "'")
-      }
-      console.log(strTmp)
+      // console.log(type)
+      // let strTmp = this.$store.getters.getScriptStr
+      // if (strTmp.match(/'type': 'line'|type: 'line'|'type': 'bar'|type: 'bar'|'type': 'pie'|type: 'pie'/gm) != null) {
+      //   strTmp = strTmp.replace(/'type': 'line'|type: 'line'|'type': 'bar'|type: 'bar'|'type': 'pie'|type: 'pie'/gm, "type: '" + type + "'")
+      // }
+      // console.log(strTmp)
       this.$store.commit('setScriptStr', data)
       this.$store.commit('setType', type)
       this.bus.$emit('sendScript',[data])

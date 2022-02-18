@@ -1,12 +1,11 @@
 <template>
   <div>
       <el-form>
-        Title: {{title}}
         <el-form-item>
-          <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="title"></el-input>
+          <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>
         </el-form-item>
         <el-form-item style="width: 100%">
-          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="updateTit">UpdateTitle</el-button>
+          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="updateTit">Update</el-button>
         </el-form-item>
       </el-form>
   </div>

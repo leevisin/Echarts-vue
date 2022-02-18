@@ -6,27 +6,26 @@
                   disabled
                   v-for="item in charts"
                   :key="item.id">
-        <el-card style="width: 290px;margin-bottom: 20px;height: 300px;float: left;margin-right: 15px" class="chart"
+        <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"
                  bodyStyle="padding:10px" shadow="hover">
           <div class="cover">
-            <img :src="item.cover" alt="cover">
+            <img :src="item.cover" alt="cover" v-on:click="changeChart(item.type, item.data)">
           </div>
           <div class="info">
             <div class="title">
-              <a href="">{{item.title}}</a>
+              <a>{{item.title}}</a>
             </div>
-            <el-button class="button" v-on:click="changeChart(item.type, item.data)">{{ item.type }}</el-button>
           </div>
         </el-card>
       </el-tooltip>
     </el-row>
-    <el-row>
-      <el-pagination
-        :current-page="1"
-        :page-size="10"
-        :total="20">
-      </el-pagination>
-    </el-row>
+<!--    <el-row>-->
+<!--      <el-pagination-->
+<!--        :current-page="1"-->
+<!--        :page-size="10"-->
+<!--        :total="20">-->
+<!--      </el-pagination>-->
+<!--    </el-row>-->
   </div>
 </template>
 
@@ -115,7 +114,129 @@ export default {
             '    }\n' +
             '  ]\n' +
             '};',
-        }
+        },
+        {
+          cover: 'https://echarts.apache.org/examples/data/thumb/sunburst-simple.webp?_v_=1643452312113',
+          title: 'Basic Sunburst',
+          type: 'sunburst',
+          data: 'var dataSunburst = [\n' +
+            '  {\n' +
+            '    name: \'Grandpa\',\n' +
+            '    children: [\n' +
+            '      {\n' +
+            '        name: \'Uncle Leo\',\n' +
+            '        value: 15,\n' +
+            '        children: [\n' +
+            '          {\n' +
+            '            name: \'Cousin Jack\',\n' +
+            '            value: 2\n' +
+            '          },\n' +
+            '          {\n' +
+            '            name: \'Cousin Mary\',\n' +
+            '            value: 5,\n' +
+            '            children: [\n' +
+            '              {\n' +
+            '                name: \'Jackson\',\n' +
+            '                value: 2\n' +
+            '              }\n' +
+            '            ]\n' +
+            '          },\n' +
+            '          {\n' +
+            '            name: \'Cousin Ben\',\n' +
+            '            value: 4\n' +
+            '          }\n' +
+            '        ]\n' +
+            '      },\n' +
+            '      {\n' +
+            '        name: \'Father\',\n' +
+            '        value: 10,\n' +
+            '        children: [\n' +
+            '          {\n' +
+            '            name: \'Me\',\n' +
+            '            value: 5\n' +
+            '          },\n' +
+            '          {\n' +
+            '            name: \'Brother Peter\',\n' +
+            '            value: 1\n' +
+            '          }\n' +
+            '        ]\n' +
+            '      }\n' +
+            '    ]\n' +
+            '  },\n' +
+            '  {\n' +
+            '    name: \'Nancy\',\n' +
+            '    children: [\n' +
+            '      {\n' +
+            '        name: \'Uncle Nike\',\n' +
+            '        children: [\n' +
+            '          {\n' +
+            '            name: \'Cousin Betty\',\n' +
+            '            value: 1\n' +
+            '          },\n' +
+            '          {\n' +
+            '            name: \'Cousin Jenny\',\n' +
+            '            value: 2\n' +
+            '          }\n' +
+            '        ]\n' +
+            '      }\n' +
+            '    ]\n' +
+            '  }\n' +
+            '];\n' +
+            'option = {\n' +
+            '  series: {\n' +
+            '    type: \'sunburst\',\n' +
+            '    // emphasis: {\n' +
+            '    //     focus: \'ancestor\'\n' +
+            '    // },\n' +
+            '    data: dataSunburst,\n' +
+            '    radius: [0, \'90%\'],\n' +
+            '    label: {\n' +
+            '      rotate: \'radial\'\n' +
+            '    }\n' +
+            '  }\n' +
+            '};',
+        },
+        {
+          cover: 'https://echarts.apache.org/examples/data/thumb/pie-roseType-simple.webp?_v_=1643452312113',
+          title: 'Nightingale Chart',
+          type: 'pie',
+          data: 'option = {\n' +
+            '  legend: {\n' +
+            '    top: \'bottom\'\n' +
+            '  },\n' +
+            '  toolbox: {\n' +
+            '    show: true,\n' +
+            '    feature: {\n' +
+            '      mark: { show: true },\n' +
+            '      dataView: { show: true, readOnly: false },\n' +
+            '      restore: { show: true },\n' +
+            '      saveAsImage: { show: true }\n' +
+            '    }\n' +
+            '  },\n' +
+            '  series: [\n' +
+            '    {\n' +
+            '      name: \'Nightingale Chart\',\n' +
+            '      type: \'pie\',\n' +
+            '      radius: [50, 250],\n' +
+            '      center: [\'50%\', \'50%\'],\n' +
+            '      roseType: \'area\',\n' +
+            '      itemStyle: {\n' +
+            '        borderRadius: 8\n' +
+            '      },\n' +
+            '      data: [\n' +
+            '        { value: 40, name: \'rose 1\' },\n' +
+            '        { value: 38, name: \'rose 2\' },\n' +
+            '        { value: 32, name: \'rose 3\' },\n' +
+            '        { value: 30, name: \'rose 4\' },\n' +
+            '        { value: 28, name: \'rose 5\' },\n' +
+            '        { value: 26, name: \'rose 6\' },\n' +
+            '        { value: 22, name: \'rose 7\' },\n' +
+            '        { value: 18, name: \'rose 8\' }\n' +
+            '      ]\n' +
+            '    }\n' +
+            '  ]\n' +
+            '};',
+        },
       ]
     }
   },

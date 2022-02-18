@@ -228,6 +228,21 @@ export default {
     width: 40px;
     height: 28px;
     z-index: 2;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid #FF7F50;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 7px 9px;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #FF4500;
   }
 
   .xls-button {

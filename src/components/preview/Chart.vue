@@ -95,8 +95,6 @@ export default {
             '    }\n' +
             '  ]\n' +
             '};',
-          press: '',
-          abs: ''
         },
         {
           cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/line-simple.webp?_v_=1643452312113',
@@ -117,8 +115,6 @@ export default {
             '    }\n' +
             '  ]\n' +
             '};',
-          press: '',
-          abs: ''
         }
       ]
     }

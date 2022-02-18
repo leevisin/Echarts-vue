@@ -101,7 +101,7 @@ export default {
     // 把excel用转化为table
     excelToTable(data) {
       const outData = JSON.parse(data.card);
-      console.log("excel数据：  "+JSON.stringify(outData));
+      // console.log("excel数据：  "+JSON.stringify(outData));
 
       const tableHeadList = [];
       let num = 1;
@@ -120,25 +120,25 @@ export default {
         const tableData1 = {};
         for (let k = 0; k < tableHeadList.length; k++) {
           // 第一行的数据
-          console.log("表头字段："+tableHeadList[k]['column_name']+",表头数据：" + tableHeadList[k]['column_comment']);
+          // console.log("表头字段："+tableHeadList[k]['column_name']+",表头数据：" + tableHeadList[k]['column_comment']);
           for (const outDataKey in outData[j]) {
-            console.log("outDataKey = " + outDataKey)
+            // console.log("outDataKey = " + outDataKey)
             if (outData[j].hasOwnProperty(outDataKey)) {//对于（可能迭代异常（自定义/继承）成员，可能缺少 hasOwnProperty 检查）的错误的解决，用if语句判断
               if (tableHeadList[k]['column_comment'] === outDataKey) {
                 tableData1[tableHeadList[k]['column_name']] = outData[j][outDataKey];
-                console.log("tableHeadList[k]['column_comment'] = " + outData[j][outDataKey])
+                // console.log("tableHeadList[k]['column_comment'] = " + outData[j][outDataKey])
               }
             }
           }
         }
         tableDataList.push(tableData1);
       }
-      console.log("tableHeadList");
-      console.log(JSON.stringify(tableHeadList))
-      console.log(tableHeadList);
-      console.log("tableDataList");
-      console.log(JSON.stringify(tableDataList))
-      console.log(tableDataList);
+      // console.log("tableHeadList");
+      // console.log(JSON.stringify(tableHeadList))
+      // console.log(tableHeadList);
+      // console.log("tableDataList");
+      // console.log(JSON.stringify(tableDataList))
+      // console.log(tableDataList);
       this.tableData = tableDataList;//给表格内容赋值
     },
     //导出Excel

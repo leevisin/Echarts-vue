@@ -263,14 +263,12 @@ export default {
           '        right: null,\n' +
           '        bottom: null,\n' +
           '        textStyle: {\n' +
-          '            normal: {\n' +
-          '                color: function() {\n' +
-          '                     return \'rgb(\' + [\n' +
-          '                            Math.round(Math.random() * 160),\n' +
-          '                            Math.round(Math.random() * 160),\n' +
-          '                            Math.round(Math.random() * 160)\n' +
-          '                        ].join(\',\') + \')\';\n' +
-          '                },\n' +
+          '           color: function() {\n' +
+          '                return \'rgb(\' + [\n' +
+          '                       Math.round(Math.random() * 160),\n' +
+          '                       Math.round(Math.random() * 160),\n' +
+          '                       Math.round(Math.random() * 160)\n' +
+          '                    ].join(\',\') + \')\';\n' +
           '            },\n' +
           '        },\n' +
           '        data: [{\n' +

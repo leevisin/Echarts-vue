@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import * as echarts from 'echarts'
+import 'echarts-wordcloud'
 import ecStat from 'echarts-stat';
 import 'element-ui/lib/theme-chalk/index.css'
 import ace from 'ace-builds'
@@ -20,6 +21,7 @@ Vue.prototype.bus = new Vue()
 window.$ = jq
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
+require('echarts-wordcloud')
 Vue.prototype.$ecStat = ecStat
 Vue.config.productionTip = false
 Vue.use(vueXlsxTable,{rABS:false})

@@ -237,6 +237,83 @@ export default {
             '  ]\n' +
             '};',
         },
+        {cover: 'https://s2.loli.net/2022/02/21/yZmcWLwtJsTxgFQ.png',
+        title: 'Word Cloud',
+        type: 'wordCloud',
+        data: 'option = {\n' +
+          '    title: {\n' +
+          '        text: "Hot Word",\n' +
+          '        textStyle: {\n' +
+          '            color: "#148D75",\n' +
+          '        },\n' +
+          '        top: 14,\n' +
+          '        left: 26,\n' +
+          '    },\n' +
+          '    series: [{\n' +
+          '        type: "wordCloud",\n' +
+          '        size: ["80%", "80%"],\n' +
+          '        rotationRange: [-90, 90],\n' +
+          '        textPadding: 0,\n' +
+          '        autoSize: {\n' +
+          '            enable: true,\n' +
+          '            minSize: 14,\n' +
+          '        },\n' +
+          '        left: "center",\n' +
+          '        top: "center",\n' +
+          '        right: null,\n' +
+          '        bottom: null,\n' +
+          '        textStyle: {\n' +
+          '            normal: {\n' +
+          '                color: function() {\n' +
+          '                     return \'rgb(\' + [\n' +
+          '                            Math.round(Math.random() * 160),\n' +
+          '                            Math.round(Math.random() * 160),\n' +
+          '                            Math.round(Math.random() * 160)\n' +
+          '                        ].join(\',\') + \')\';\n' +
+          '                },\n' +
+          '            },\n' +
+          '        },\n' +
+          '        data: [{\n' +
+          '            name: \'大数据\',\n' +
+          '            value: 2181\n' +
+          '        }, {\n' +
+          '            name: \'云计算\',\n' +
+          '            value: 1386\n' +
+          '        }, {\n' +
+          '            name: \'物联网\',\n' +
+          '            value: 2055\n' +
+          '        }, {\n' +
+          '            name: \'移动互联网\',\n' +
+          '            value: 2467\n' +
+          '        }, {\n' +
+          '            name: \'人工智能\',\n' +
+          '            value: 2244\n' +
+          '        }, {\n' +
+          '            name: \'深度学习\',\n' +
+          '            value: 1898\n' +
+          '        }, {\n' +
+          '            name: \'机器学习\',\n' +
+          '            value: 1484\n' +
+          '        }, {\n' +
+          '            name: \'区块链\',\n' +
+          '            value: 3865\n' +
+          '        }, {\n' +
+          '            name: \'互联网+\',\n' +
+          '            value: 2222\n' +
+          '        }, {\n' +
+          '            name: \'智能合约\',\n' +
+          '            value: 366\n' +
+          '        }, {\n' +
+          '            name: \'比特币\',\n' +
+          '            value: 360\n' +
+          '        }, {\n' +
+          '            name: \'数据挖掘\',\n' +
+          '            value: 273\n' +
+          '        }],\n' +
+          '    },\n' +
+          '    ],\n' +
+          '};'
+    },
       ]
     }
   },

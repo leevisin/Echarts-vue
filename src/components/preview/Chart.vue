@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row style="height: 800px;">
+    <el-row style="height: 850px; overflow: auto">
 <!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
                   disabled

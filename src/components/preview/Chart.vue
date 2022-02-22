@@ -185,9 +185,6 @@ export default {
             'option = {\n' +
             '  series: {\n' +
             '    type: \'sunburst\',\n' +
-            '    // emphasis: {\n' +
-            '    //     focus: \'ancestor\'\n' +
-            '    // },\n' +
             '    data: dataSunburst,\n' +
             '    radius: [0, \'90%\'],\n' +
             '    label: {\n' +

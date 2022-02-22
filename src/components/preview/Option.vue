@@ -49,10 +49,10 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           if (this.titleTmp == 'null') {
             this.titleTmp = ''
           }
-          if (this.strTmp.match(/'[^sub]text': '(.*?)'|[^sub]text: '(.*?)'/gm) != null) {
-            this.strTmp = this.strTmp.replace(/'[^sub]text': '(.*?)(',|')|[^sub]text: '(.*?)(',|')/gm, "text: '" + this.titleTmp + "',")
+          if (this.strTmp.match(/[^sub]text: '(.*?)(',|')|[^sub]text: "(.*?)(",|")/gm) != null) {
+            this.strTmp = this.strTmp.replace(/[^sub]text: '(.*?)(',|')|[^sub]text: "(.*?)(",|")/gm, "text: '" + this.titleTmp + "',")
           } else {
-            this.strTmp = this.strTmp.replace(/{/, "{\n  title: {\n    text: '" +this.titleTmp +"',\n  },")
+            this.strTmp = this.strTmp.replace(/option = \{/, "option = {\n  title: {\n    text: '" +this.titleTmp +"',\n  },")
           }
         }
       },
@@ -62,8 +62,8 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           if (this.subtitleTmp == 'null') {
             this.subtitleTmp = ''
           }
-          if (this.strTmp.match(/'subtext': '(.*?)(',|')|subtext: '(.*?)(',|')/gm) != null) {
-            this.strTmp = this.strTmp.replace(/'subtext': '(.*?)(',|')|subtext: '(.*?)(',|')/gm, "subtext: '" + this.subtitleTmp + "',")
+          if (this.strTmp.match(/subtext: '(.*?)(',|')|subtext: "(.*?)(",|")/gm) != null) {
+            this.strTmp = this.strTmp.replace(/subtext: '(.*?)(',|')|subtext: "(.*?)(",|")/gm, "subtext: '" + this.subtitleTmp + "',")
           } else {
             this.strTmp = this.strTmp.replace(/title: {/, "title: {\n      subtext: '" +this.subtitleTmp +"',")
           }
@@ -84,7 +84,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
               this.strTmp = this.strTmp.replace(/feature: {/gm, "feature: {\n" +
                 "      saveAsImage: { show: true },")
             } else {
-              this.strTmp = this.strTmp.replace(/{/, "{\n  toolbox: {\n" +
+              this.strTmp = this.strTmp.replace(/option = \{/, "option = \{\n  toolbox: {\n" +
                 "    show: true,\n" +
                 "    feature: {\n" +
                 "      saveAsImage: { show: true },\n" +

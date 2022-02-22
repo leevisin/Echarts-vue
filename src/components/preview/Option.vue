@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
   export default {
     name: 'Option',
     data() {
@@ -34,6 +35,10 @@
         this.changeTitle()
         this.changeSubtitle()
         this.changeSaveImg()
+        this.strTmp = js_beautify(this.strTmp, {
+          indent_size: 2,
+          space_in_empty_paren: true
+        })
         this.$store.commit('setScriptStr', this.strTmp)
         this.bus.$emit('sendScript',[this.strTmp])
       },

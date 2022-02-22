@@ -55,6 +55,7 @@ import 'ace-builds/webpack-resolver'
 import 'ace-builds/src-noconflict/ext-language_tools'
 import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/mode-javascript'
+import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
 
 // const themeArray = [{
 //   name: 'monokai',
@@ -154,11 +155,29 @@ export default {
     sendChartOption() {
       // 点击运行按钮获取编辑器内容，保存到scriptStr
       this.scriptStr = this.aceEditor.getValue()
+      // Replace data which is in scriptStr String
+      if (this.data != null) {
+        // Set the scriptStr as one String to handle
+        this.scriptStr = this.scriptStr.replace(/\n/gm, '')
+        this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/gm, 'data: ' + JSON.stringify(this.data))
+        // If there are two data:[] in scriptStr
+        if( this.scriptStr.match(/type: 'category'(.*?)data: \[(.*?)]/gm) != null) {
+          let dataName = JSON.stringify(this.data)
+          dataName = dataName.replace(/"value":"(.*?)"/gm, '')
+          dataName = dataName.replace(/name/gm, 'value')
+          this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/, 'data: ' + dataName)
+        }
+      }
+      // Format scriptStr as we can understand
+      this.scriptStr = js_beautify(this.scriptStr, {
+        indent_size: 2,
+        space_in_empty_paren: true
+      })
       console.log(this.scriptStr)
       // 更新store中scriptStr的值
       this.$store.commit('setScriptStr', this.scriptStr)
       let script = this.scriptStr
-      // 将新的 编辑器内容 传给图表组件
+      // 将新的 编辑器内容 传给图表组件 (Now this.data is useless, and can be deleted
       this.bus.$emit('sendScript',[script,this.data])
     },
     // Use button to refresh ace is the same as scriptStr

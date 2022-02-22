@@ -32,6 +32,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
     methods: {
       update(){
         this.strTmp = this.$store.getters.getScriptStr
+        this.strTmp = this.strTmp.replace(/\n/gm, '')
         this.changeTitle()
         this.changeSubtitle()
         this.changeSaveImg()
@@ -48,8 +49,8 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           if (this.titleTmp == 'null') {
             this.titleTmp = ''
           }
-          if (this.strTmp.match(/'text':(.*)|text:(.*)/gm) != null) {
-            this.strTmp = this.strTmp.replace(/'text':(.*)|text:(.*)/gm, "text: '" + this.titleTmp + "',")
+          if (this.strTmp.match(/'[^sub]text': '(.*?)'|[^sub]text: '(.*?)'/gm) != null) {
+            this.strTmp = this.strTmp.replace(/'[^sub]text': '(.*?)(',|')|[^sub]text: '(.*?)(',|')/gm, "text: '" + this.titleTmp + "',")
           } else {
             this.strTmp = this.strTmp.replace(/{/, "{\n  title: {\n    text: '" +this.titleTmp +"',\n  },")
           }
@@ -61,8 +62,8 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           if (this.subtitleTmp == 'null') {
             this.subtitleTmp = ''
           }
-          if (this.strTmp.match(/'subtext':(.*)|subtext:(.*)/gm) != null) {
-            this.strTmp = this.strTmp.replace(/'subtext':(.*)|subtext:(.*)/gm, "subtext: '" + this.subtitleTmp + "',")
+          if (this.strTmp.match(/'subtext': '(.*?)(',|')|subtext: '(.*?)(',|')/gm) != null) {
+            this.strTmp = this.strTmp.replace(/'subtext': '(.*?)(',|')|subtext: '(.*?)(',|')/gm, "subtext: '" + this.subtitleTmp + "',")
           } else {
             this.strTmp = this.strTmp.replace(/title: {/, "title: {\n      subtext: '" +this.subtitleTmp +"',")
           }
@@ -73,7 +74,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           return
         }
         if (this.isSaveImg == '0') {
-          this.strTmp = this.strTmp.replace(/\n(.*)saveAsImage(.*)/gm, "")
+          this.strTmp = this.strTmp.replace(/saveAsImage: \{(.*?)(\},|\})/gm, "")
         }
         if (this.isSaveImg == '1') {
           if (this.strTmp.match(/\n(.*)saveAsImage(.*)/gm) != null) {

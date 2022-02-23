@@ -97,7 +97,7 @@ export default {
   props: ['option'],
   mounted () {
     this.aceEditor = ace.edit(this.$refs.ace, {
-      maxLines: 100,
+      maxLines: 50,
       minLines: 48,
       fontSize: 14,
       value: this.value ? this.value : '',

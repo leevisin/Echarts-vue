@@ -426,7 +426,6 @@ export default {
             'const upBorderColor = \'#8A0000\';\n' +
             'const downColor = \'#00da3c\';\n' +
             'const downBorderColor = \'#008F28\';\n' +
-            '// Each item: open，close，lowest，highest\n' +
             'const data0 = splitData([\n' +
             '  [\'2013/1/24\', 2320.26, 2320.26, 2287.3, 2362.94],\n' +
             '  [\'2013/1/25\', 2300, 2291.3, 2288.26, 2308.38],\n' +
@@ -727,10 +726,336 @@ export default {
             '};',
         },
         {
-          cover: 'https://echarts.apache.org/examples/data/thumb/sunburst-simple.webp?_v_=1643452312113',
-          title: '',
-          type: '',
-          data: '',
+          cover: 'https://echarts.apache.org/examples/data/thumb/radar.webp?_v_=1643452312113',
+          title: 'Basic Radar Chart',
+          type: 'radar',
+          data: 'option = {\n' +
+            '  title: {\n' +
+            '    text: \'Basic Radar Chart\'\n' +
+            '  },\n' +
+            '  legend: {\n' +
+            '    data: [\'Allocated Budget\', \'Actual Spending\']\n' +
+            '  },\n' +
+            '  radar: {\n' +
+            '    indicator: [\n' +
+            '      { name: \'Sales\', max: 6500 },\n' +
+            '      { name: \'Administration\', max: 16000 },\n' +
+            '      { name: \'Information Technology\', max: 30000 },\n' +
+            '      { name: \'Customer Support\', max: 38000 },\n' +
+            '      { name: \'Development\', max: 52000 },\n' +
+            '      { name: \'Marketing\', max: 25000 }\n' +
+            '    ]\n' +
+            '  },\n' +
+            '  series: [\n' +
+            '    {\n' +
+            '      name: \'Budget vs spending\',\n' +
+            '      type: \'radar\',\n' +
+            '      data: [\n' +
+            '        {\n' +
+            '          value: [4200, 3000, 20000, 35000, 50000, 18000],\n' +
+            '          name: \'Allocated Budget\'\n' +
+            '        },\n' +
+            '        {\n' +
+            '          value: [5000, 14000, 28000, 26000, 42000, 21000],\n' +
+            '          name: \'Actual Spending\'\n' +
+            '        }\n' +
+            '      ]\n' +
+            '    }\n' +
+            '  ]\n' +
+            '};',
+        },
+        {
+          cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/pictorialBar-forest.webp?_v_=1643452312113',
+          title: 'Expansion of forest',
+          type: 'pictorialBar',
+          data: 'const treeDataURI =\n' +
+            '  \'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC\';\n' +
+            'const beginYear = 2016;\n' +
+            'const endYear = 2050;\n' +
+            'const lineCount = 10;\n' +
+            'option = {\n' +
+            '  color: [\'#e54035\'],\n' +
+            '  xAxis: {\n' +
+            '    axisLine: { show: false },\n' +
+            '    axisLabel: { show: false },\n' +
+            '    axisTick: { show: false },\n' +
+            '    splitLine: { show: false },\n' +
+            '    name: beginYear + \'\',\n' +
+            '    nameLocation: \'middle\',\n' +
+            '    nameGap: 40,\n' +
+            '    nameTextStyle: {\n' +
+            '      color: \'green\',\n' +
+            '      fontSize: 30,\n' +
+            '      fontFamily: \'Arial\'\n' +
+            '    },\n' +
+            '    min: -2800,\n' +
+            '    max: 2800\n' +
+            '  },\n' +
+            '  yAxis: {\n' +
+            '    data: makeCategoryData(),\n' +
+            '    show: false\n' +
+            '  },\n' +
+            '  grid: {\n' +
+            '    top: \'center\',\n' +
+            '    height: 280\n' +
+            '  },\n' +
+            '  series: [\n' +
+            '    {\n' +
+            '      name: \'all\',\n' +
+            '      type: \'pictorialBar\',\n' +
+            '      symbol: \'image://\' + treeDataURI,\n' +
+            '      symbolSize: [30, 55],\n' +
+            '      symbolRepeat: true,\n' +
+            '      data: makeSeriesData(beginYear),\n' +
+            '      animationEasing: \'elasticOut\'\n' +
+            '    },\n' +
+            '    {\n' +
+            '      name: \'all\',\n' +
+            '      type: \'pictorialBar\',\n' +
+            '      symbol: \'image://\' + treeDataURI,\n' +
+            '      symbolSize: [30, 55],\n' +
+            '      symbolRepeat: true,\n' +
+            '      data: makeSeriesData(beginYear, true),\n' +
+            '      animationEasing: \'elasticOut\'\n' +
+            '    }\n' +
+            '  ]\n' +
+            '};\n' +
+            'function makeCategoryData() {\n' +
+            '  var categoryData = [];\n' +
+            '  for (var i = 0; i < lineCount; i++) {\n' +
+            '    categoryData.push(i + \'a\');\n' +
+            '  }\n' +
+            '  return categoryData;\n' +
+            '}\n' +
+            'function makeSeriesData(year, negative) {\n' +
+            '  const r = (year - beginYear + 1) * 10;\n' +
+            '  const seriesData = [];\n' +
+            '  for (let i = 0; i < lineCount; i++) {\n' +
+            '    let sign = negative ? -1 * (i % 3 ? 0.9 : 1) : 1 * ((i + 1) % 3 ? 0.9 : 1);\n' +
+            '    seriesData.push({\n' +
+            '      value:\n' +
+            '        sign *\n' +
+            '        (year <= beginYear + 1\n' +
+            '          ? Math.abs(i - lineCount / 2 + 0.5) < lineCount / 5\n' +
+            '            ? 5\n' +
+            '            : 0\n' +
+            '          : (lineCount - Math.abs(i - lineCount / 2 + 0.5)) * r),\n' +
+            '      symbolOffset: i % 2 ? [\'50%\', 0] : undefined\n' +
+            '    });\n' +
+            '  }\n' +
+            '  return seriesData;\n' +
+            '}\n' +
+            'var currentYear = beginYear;\n' +
+            'setInterval(function () {\n' +
+            '  currentYear++;\n' +
+            '  if (currentYear > endYear) {\n' +
+            '    currentYear = beginYear;\n' +
+            '  }\n' +
+            '  myChart.setOption({\n' +
+            '    xAxis: {\n' +
+            '      name: currentYear\n' +
+            '    },\n' +
+            '    series: [\n' +
+            '      {\n' +
+            '        data: makeSeriesData(currentYear)\n' +
+            '      },\n' +
+            '      {\n' +
+            '        data: makeSeriesData(currentYear, true)\n' +
+            '      }\n' +
+            '    ]\n' +
+            '  });\n' +
+            '}, 800);',
+        },
+        {
+          cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/map-bar-morph.webp?_v_=1643452312113',
+          title: 'Morphing between Map and Bar',
+          type: 'map',
+          data: 'myChart.showLoading();\n' +
+            '$.get(ROOT_PATH + \'/data/asset/geo/USA.json\', function (usaJson) {\n' +
+            '  myChart.hideLoading();\n' +
+            '  echarts.registerMap(\'USA\', usaJson, {\n' +
+            '    Alaska: {\n' +
+            '      left: -131,\n' +
+            '      top: 25,\n' +
+            '      width: 15\n' +
+            '    },\n' +
+            '    Hawaii: {\n' +
+            '      left: -110,\n' +
+            '      top: 28,\n' +
+            '      width: 5\n' +
+            '    },\n' +
+            '    \'Puerto Rico\': {\n' +
+            '      left: -76,\n' +
+            '      top: 26,\n' +
+            '      width: 2\n' +
+            '    }\n' +
+            '  });\n' +
+            '  var data = [\n' +
+            '    { name: \'Alabama\', value: 4822023 },\n' +
+            '    { name: \'Alaska\', value: 731449 },\n' +
+            '    { name: \'Arizona\', value: 6553255 },\n' +
+            '    { name: \'Arkansas\', value: 2949131 },\n' +
+            '    { name: \'California\', value: 38041430 },\n' +
+            '    { name: \'Colorado\', value: 5187582 },\n' +
+            '    { name: \'Connecticut\', value: 3590347 },\n' +
+            '    { name: \'Delaware\', value: 917092 },\n' +
+            '    { name: \'District of Columbia\', value: 632323 },\n' +
+            '    { name: \'Florida\', value: 19317568 },\n' +
+            '    { name: \'Georgia\', value: 9919945 },\n' +
+            '    { name: \'Hawaii\', value: 1392313 },\n' +
+            '    { name: \'Idaho\', value: 1595728 },\n' +
+            '    { name: \'Illinois\', value: 12875255 },\n' +
+            '    { name: \'Indiana\', value: 6537334 },\n' +
+            '    { name: \'Iowa\', value: 3074186 },\n' +
+            '    { name: \'Kansas\', value: 2885905 },\n' +
+            '    { name: \'Kentucky\', value: 4380415 },\n' +
+            '    { name: \'Louisiana\', value: 4601893 },\n' +
+            '    { name: \'Maine\', value: 1329192 },\n' +
+            '    { name: \'Maryland\', value: 5884563 },\n' +
+            '    { name: \'Massachusetts\', value: 6646144 },\n' +
+            '    { name: \'Michigan\', value: 9883360 },\n' +
+            '    { name: \'Minnesota\', value: 5379139 },\n' +
+            '    { name: \'Mississippi\', value: 2984926 },\n' +
+            '    { name: \'Missouri\', value: 6021988 },\n' +
+            '    { name: \'Montana\', value: 1005141 },\n' +
+            '    { name: \'Nebraska\', value: 1855525 },\n' +
+            '    { name: \'Nevada\', value: 2758931 },\n' +
+            '    { name: \'New Hampshire\', value: 1320718 },\n' +
+            '    { name: \'New Jersey\', value: 8864590 },\n' +
+            '    { name: \'New Mexico\', value: 2085538 },\n' +
+            '    { name: \'New York\', value: 19570261 },\n' +
+            '    { name: \'North Carolina\', value: 9752073 },\n' +
+            '    { name: \'North Dakota\', value: 699628 },\n' +
+            '    { name: \'Ohio\', value: 11544225 },\n' +
+            '    { name: \'Oklahoma\', value: 3814820 },\n' +
+            '    { name: \'Oregon\', value: 3899353 },\n' +
+            '    { name: \'Pennsylvania\', value: 12763536 },\n' +
+            '    { name: \'Rhode Island\', value: 1050292 },\n' +
+            '    { name: \'South Carolina\', value: 4723723 },\n' +
+            '    { name: \'South Dakota\', value: 833354 },\n' +
+            '    { name: \'Tennessee\', value: 6456243 },\n' +
+            '    { name: \'Texas\', value: 26059203 },\n' +
+            '    { name: \'Utah\', value: 2855287 },\n' +
+            '    { name: \'Vermont\', value: 626011 },\n' +
+            '    { name: \'Virginia\', value: 8185867 },\n' +
+            '    { name: \'Washington\', value: 6897012 },\n' +
+            '    { name: \'West Virginia\', value: 1855413 },\n' +
+            '    { name: \'Wisconsin\', value: 5726398 },\n' +
+            '    { name: \'Wyoming\', value: 576412 },\n' +
+            '    { name: \'Puerto Rico\', value: 3667084 }\n' +
+            '  ];\n' +
+            '  data.sort(function (a, b) {\n' +
+            '    return a.value - b.value;\n' +
+            '  });\n' +
+            '  const mapOption = {\n' +
+            '    visualMap: {\n' +
+            '      left: \'right\',\n' +
+            '      min: 500000,\n' +
+            '      max: 38000000,\n' +
+            '      inRange: {\n' +
+            '        color: [\'#313695\', \'#4575b4\', \'#74add1\', \'#abd9e9\', \'#e0f3f8\', \'#ffffbf\', \'#fee090\', \'#fdae61\', \'#f46d43\', \'#d73027\', \'#a50026\']\n' +
+            '      },\n' +
+            '      text: [\'High\', \'Low\'],\n' +
+            '      calculable: true\n' +
+            '    },\n' +
+            '    series: [\n' +
+            '      {\n' +
+            '        id: \'population\',\n' +
+            '        type: \'map\',\n' +
+            '        roam: true,\n' +
+            '        map: \'USA\',\n' +
+            '        animationDurationUpdate: 1000,\n' +
+            '        universalTransition: true,\n' +
+            '        data: data\n' +
+            '      }\n' +
+            '    ]\n' +
+            '  };\n' +
+            '  const barOption = {\n' +
+            '    xAxis: {\n' +
+            '      type: \'value\'\n' +
+            '    },\n' +
+            '    yAxis: {\n' +
+            '      type: \'category\',\n' +
+            '      axisLabel: {\n' +
+            '        rotate: 30\n' +
+            '      },\n' +
+            '      data: data.map(function (item) {\n' +
+            '        return item.name;\n' +
+            '      })\n' +
+            '    },\n' +
+            '    animationDurationUpdate: 1000,\n' +
+            '    series: {\n' +
+            '      type: \'bar\',\n' +
+            '      id: \'population\',\n' +
+            '      data: data.map(function (item) {\n' +
+            '        return item.value;\n' +
+            '      }),\n' +
+            '      universalTransition: true\n' +
+            '    }\n' +
+            '  };\n' +
+            '  let currentOption = mapOption;\n' +
+            '  myChart.setOption(mapOption);\n' +
+            '  setInterval(function () {\n' +
+            '    currentOption = currentOption === mapOption ? barOption : mapOption;\n' +
+            '    myChart.setOption(currentOption, true);\n' +
+            '  }, 2000);\n' +
+            '});',
+        },
+        {
+          cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/treemap-sunburst-transition.webp?_v_=1643452312113',
+          title: 'Transition between Treemap and Sunburst',
+          type: 'treemap',
+          data: '$.getJSON(\n' +
+            '  ROOT_PATH + \'/data/asset/data/echarts-package-size.json\',\n' +
+            '  function (data) {\n' +
+            '    const treemapOption = {\n' +
+            '      series: [\n' +
+            '        {\n' +
+            '          type: \'treemap\',\n' +
+            '          id: \'echarts-package-size\',\n' +
+            '          animationDurationUpdate: 1000,\n' +
+            '          roam: false,\n' +
+            '          nodeClick: undefined,\n' +
+            '          data: data.children,\n' +
+            '          universalTransition: true,\n' +
+            '          label: {\n' +
+            '            show: true\n' +
+            '          },\n' +
+            '          breadcrumb: {\n' +
+            '            show: false\n' +
+            '          }\n' +
+            '        }\n' +
+            '      ]\n' +
+            '    };\n' +
+            '    const sunburstOption = {\n' +
+            '      series: [\n' +
+            '        {\n' +
+            '          type: \'sunburst\',\n' +
+            '          id: \'echarts-package-size\',\n' +
+            '          radius: [\'20%\', \'90%\'],\n' +
+            '          animationDurationUpdate: 1000,\n' +
+            '          nodeClick: undefined,\n' +
+            '          data: data.children,\n' +
+            '          universalTransition: true,\n' +
+            '          itemStyle: {\n' +
+            '            borderWidth: 1,\n' +
+            '            borderColor: \'rgba(255,255,255,.5)\'\n' +
+            '          },\n' +
+            '          label: {\n' +
+            '            show: false\n' +
+            '          }\n' +
+            '        }\n' +
+            '      ]\n' +
+            '    };\n' +
+            '    let currentOption = treemapOption;\n' +
+            '    myChart.setOption(currentOption);\n' +
+            '    setInterval(function () {\n' +
+            '      currentOption =\n' +
+            '        currentOption === treemapOption ? sunburstOption : treemapOption;\n' +
+            '      myChart.setOption(currentOption);\n' +
+            '    }, 3000);\n' +
+            '  }\n' +
+            ');',
         },
       ]
     }

@@ -36,6 +36,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeTitle()
         this.changeSubtitle()
         this.changeSaveImg()
+        this.Test()
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 2,
           space_in_empty_paren: true
@@ -93,6 +94,11 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
             }
           }
         }
+      },
+      Test() {
+        console.log(this.strTmp)
+        let groups = this.strTmp.replace(/series:(.*)\[(.*)data:(.*)\[(.*)\](.*)\]/gm, 'series:$1\[$2data:$3\[Success\]$5\]')
+        console.log(groups)
       },
     },
     computed: {

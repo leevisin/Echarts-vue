@@ -159,11 +159,17 @@ export default {
       if (this.data != null) {
         // Set the scriptStr as one String to handle
         this.scriptStr = this.scriptStr.replace(/\n/gm, '')
-        this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/gm, 'data: ' + JSON.stringify(this.data))
+        // Process JSON.stringify(this.data) format
+        let dataTmp = JSON.stringify(this.data)
+        dataTmp = dataTmp.replace(/"/gm,'\'')
+        dataTmp = dataTmp.replace(/'name':/gm,'name:')
+        dataTmp = dataTmp.replace(/'value':/gm,'value:')
+        // dataTmp = dataTmp.replace(/'(\d+)'/gm,'$1')
+        this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/gm, 'data: ' + dataTmp)
         // If there are two data:[] in scriptStr
-        if( this.scriptStr.match(/type: 'category'(.*?)data: \[(.*?)]/gm) != null) {
-          let dataName = JSON.stringify(this.data)
-          dataName = dataName.replace(/"value":"(.*?)"/gm, '')
+        if( this.scriptStr.match(/type: 'category'(.*?)data: \[(.*?)\]/gm) != null) {
+          let dataName = dataTmp
+          dataName = dataName.replace(/value:'(.*?)'/gm, '')
           dataName = dataName.replace(/name/gm, 'value')
           this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/, 'data: ' + dataName)
         }

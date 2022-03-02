@@ -36,7 +36,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeTitle()
         this.changeSubtitle()
         this.changeSaveImg()
-        this.Test()
+        // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 2,
           space_in_empty_paren: true
@@ -75,29 +75,38 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           return
         }
         if (this.isSaveImg == '0') {
-          this.strTmp = this.strTmp.replace(/saveAsImage: \{(.*?)(\},|\})/gm, "")
+          this.strTmp = this.strTmp.replace(/saveAsImage: \{(.*?)(\},|\})/gm, "saveAsImage: { show: false },")
         }
         if (this.isSaveImg == '1') {
-          if (this.strTmp.match(/\n(.*)saveAsImage(.*)/gm) != null) {
-            this.strTmp = this.strTmp.replace(/saveAsImage(.*)/gm, "saveAsImage: { show: true },")
+          if (this.strTmp.match(/saveAsImage:(.*)\{(.*)show:(.*)true(.*)\}/gm) != null) {
+            return
+          } else if (this.strTmp.match(/saveAsImage:/gm) != null){
+              this.strTmp = this.strTmp.replace(/saveAsImage: \{(.*?)(\},|\})/gm, "saveAsImage: { show: true },")
+          } else if (this.strTmp.match(/feature:/gm) != null){
+            this.strTmp = this.strTmp.replace(/feature: {/gm, "feature: { saveAsImage: { show: true },")
+          } else if (this.strTmp.match(/toolbox:/gm) != null){
+            this.strTmp = this.strTmp.replace(/toolbox: {/gm, "toolbox: {\n" +
+              "    show: true,\n" +
+              "    feature: {\n" +
+              "      saveAsImage: { show: true },\n" +
+              "    }\n" +
+              "  },")
           } else {
-            if (this.strTmp.match(/feature(.*)/gm) != null || this.strTmp.match(/toolbox(.*)/gm) != null) {
-              this.strTmp = this.strTmp.replace(/feature: {/gm, "feature: {\n" +
-                "      saveAsImage: { show: true },")
-            } else {
-              this.strTmp = this.strTmp.replace(/option = \{/, "option = \{\n  toolbox: {\n" +
-                "    show: true,\n" +
-                "    feature: {\n" +
-                "      saveAsImage: { show: true },\n" +
-                "    }\n" +
-                "  },")
-            }
+            this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
+              "  toolbox: {\n" +
+              "    show: true,\n" +
+              "    feature: {\n" +
+              "      saveAsImage: { show: true },\n" +
+              "    }\n" +
+              "  },")
           }
         }
+        console.log(this.strTmp)
       },
       Test() {
         console.log(this.strTmp)
         let groups = this.strTmp.replace(/series:(.*)\[(.*)data:(.*)\[(.*)\](.*)\]/gm, 'series:$1\[$2data:$3\[Success\]$5\]')
+        console.log(this.strTmp)
         console.log(groups)
       },
     },

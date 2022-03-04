@@ -1,12 +1,15 @@
 <template>
-  <div class="screen-container">
-    <!--      <div class="screen-header">-->
-    <!--        <ace :option="scriptStr"></ace>-->
-    <!--      </div>-->
-    <div class="screen-body">
-      <div ref="chartRef" style="width: 500px;height: 400px;" @sendOption=getOption></div>
-    </div>
+  <div>
+    Test
   </div>
+<!--  <div class="screen-container">-->
+<!--    &lt;!&ndash;      <div class="screen-header">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <ace :option="scriptStr"></ace>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    <div class="screen-body">-->
+<!--      <div ref="chartRef" style="width: 500px;height: 400px;" @sendOption=getOption></div>-->
+<!--    </div>-->
+<!--  </div>-->
   <!--    <div>-->
   <!--      <div id="components-demo">-->
   <!--        <button-counter></button-counter>-->

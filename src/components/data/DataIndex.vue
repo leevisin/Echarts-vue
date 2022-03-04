@@ -152,7 +152,7 @@ export default {
       try {
         FileSaver.saveAs(new Blob([etOut], {
           type: 'application/octet-stream'
-        }), 'trade-publish.xlsx');   //trade-publish.xlsx 为导出的文件名
+        }), 'data.xlsx');   //trade-publish.xlsx 为导出的文件名
       } catch (e) {
         console.log(e, etOut) ;
       }

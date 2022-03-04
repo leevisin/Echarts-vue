@@ -15,11 +15,6 @@ export default {
           text: 'Title Test',
         },
         tooltip: {},
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
         xAxis: {
           type: 'category',
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

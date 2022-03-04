@@ -15,11 +15,6 @@ const store = new Vuex.Store({
       '      text: \'Title Test\',\n' +
       '    },\n' +
       '    tooltip: {},\n' +
-      '    toolbox: {\n' +
-      '      feature: {\n' +
-      '        saveAsImage: {}\n' +
-      '      }\n' +
-      '    },\n' +
       '    xAxis: {\n' +
       '      type: \'category\',\n' +
       '      data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +

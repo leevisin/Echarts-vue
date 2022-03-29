@@ -4,10 +4,17 @@
         <el-form-item>
           <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>
           <el-input type="text" v-model="subtitleTmp" auto-complete="off" placeholder="Subtitle"></el-input>
+          <el-input type="text" v-model="xAxisNameTmp" auto-complete="off" placeholder="xAxis Name"></el-input>
+          <el-input type="text" v-model="yAxisNameTmp" auto-complete="off" placeholder="yAxis Name"></el-input>
           <div>
-            <a class="hint">Save As Image:</a>
+            <a class="hint">Save as Image:</a>
             <el-radio v-model="isSaveImg" label="0">False</el-radio>
             <el-radio v-model="isSaveImg" label="1">True</el-radio>
+          </div>
+          <div>
+            <a class="hint">Grid is Rectangle:</a>
+            <el-radio v-model="isRectangle" label="0">False</el-radio>
+            <el-radio v-model="isRectangle" label="1">True</el-radio>
           </div>
         </el-form-item>
         <el-form-item style="width: 100%">
@@ -26,7 +33,10 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         strTmp: this.$store.getters.getScriptStr,
         titleTmp: '',
         subtitleTmp: '',
-        isSaveImg: ''
+        xAxisNameTmp: '',
+        yAxisNameTmp: '',
+        isSaveImg: '',
+        isRectangle: '',
       }
     },
     methods: {
@@ -35,7 +45,10 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.strTmp = this.strTmp.replace(/\n/gm, '')
         this.changeTitle()
         this.changeSubtitle()
+        this.changeXAxisName()
+        this.changeYAxisName()
         this.changeSaveImg()
+        this.changeIsRectangle()
         // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 2,
@@ -70,6 +83,32 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           }
         }
       },
+      changeXAxisName() {
+        if (this.xAxisNameTmp == '') {
+          return
+        }
+        if (this.xAxisNameTmp == 'null') {
+          this.xAxisNameTmp = ''
+        }
+        if (this.strTmp.match(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
+          this.strTmp = this.strTmp.replace(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "xAxis: {$1name: '"+ this.xAxisNameTmp +"'$3}")
+        } else {
+          this.strTmp = this.strTmp.replace(/xAxis: {(.*?)}/gm, "xAxis: { name:'"+ this.xAxisNameTmp +"',$1}")
+        }
+      },
+      changeYAxisName() {
+        if (this.yAxisNameTmp == '') {
+          return
+        }
+        if (this.yAxisNameTmp == 'null') {
+          this.yAxisNameTmp = ''
+        }
+        if (this.strTmp.match(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
+          this.strTmp = this.strTmp.replace(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "yAxis: {$1name: '"+ this.yAxisNameTmp +"'$3}")
+        } else {
+          this.strTmp = this.strTmp.replace(/yAxis: {(.*?)}/gm, "yAxis: { name:'"+ this.yAxisNameTmp +"',$1}")
+        }
+      },
       changeSaveImg() {
         if (this.isSaveImg == '') {
           return
@@ -102,6 +141,24 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           }
         }
         console.log(this.strTmp)
+      },
+      changeIsRectangle() {
+        if (this.isRectangle == '') {
+          return
+        }
+        if (this.isRectangle == '0') {
+          this.strTmp = this.strTmp.replace(/grid: {(.*)show: true(.*)}/gm, "grid: {$1show: false$2}")
+        }
+        if (this.isRectangle == '1') {
+          if (this.strTmp.match(/grid: {(.*)show: false(.*)}/gm) != null){
+            this.strTmp = this.strTmp.replace(/grid: {(.*)show: false(.*)}/gm, "grid: {$1show: true$2}")
+          } else {
+            this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
+              "  grid: {\n" +
+              "    show: true\n" +
+              "  },")
+          }
+        }
       },
       Test() {
         console.log(this.strTmp)

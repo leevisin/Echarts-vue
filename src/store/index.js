@@ -29,6 +29,7 @@ const store = new Vuex.Store({
       '      }\n' +
       '    ]\n' +
       '};',
+    spreadsheet: '',
   },
   mutations: {
     setUserName(state, aUserName){
@@ -49,6 +50,9 @@ const store = new Vuex.Store({
     setScriptStr(state, aScriptStr){
       state.scriptStr = aScriptStr;
     },
+    setSpreadsheet(state, aSpreadsheet){
+      state.spreadsheet = aSpreadsheet;
+    }
   },
   getters: {
     getAge(state) {
@@ -69,6 +73,9 @@ const store = new Vuex.Store({
     getScriptStr(state) {
       return state.scriptStr;
     },
+    getSpreadsheet(state) {
+      return state.spreadsheet;
+    },
   },
   actions: {
     getAge(context) {
@@ -88,6 +95,9 @@ const store = new Vuex.Store({
     },
     getScriptStr(context) {
       context.commit('getScriptStr');
+    },
+    getSpreadsheet(context) {
+      context.commit('getSpreadsheet');
     },
   }
 })

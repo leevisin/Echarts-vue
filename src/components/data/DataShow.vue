@@ -1,39 +1,114 @@
 <template>
   <div>
-    <button v-on:click="getRealData">Get Data</button>
+    <div>Convert all of data to a 2-dimension array.</div>
     <el-input
       type="textarea"
-      :autosize="{ minRows: 2, maxRows: 4}"
-      placeholder="请输入内容"
-      v-model="realData">
+      :autosize="{ minRows: 2}"
+      placeholder=""
+      v-model="array1">
+    </el-input>
+    <div>Convert to a 1-dimension array every column.</div>
+    <el-input
+      type="textarea"
+      :autosize="{ minRows: 2}"
+      placeholder=""
+      v-model="array2">
+    </el-input>
+    <div>Convert to a 2-dimension array every 2 column.</div>
+    <el-input
+      type="textarea"
+      :autosize="{ minRows: 2}"
+      placeholder=""
+      v-model="array3">
+    </el-input>
+    <div>Object + Array, Row 1 is Attribute Name.</div>
+    <el-input
+      type="textarea"
+      :autosize="{ minRows: 2}"
+      placeholder=""
+      v-model="array4">
     </el-input>
   </div>
 </template>
 
 <script>
+import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
 export default {
   name: 'DataShow',
   data() {
     return {
-      realData: ''
+      realData: '',
+      array1: '',
+      array2: '',
+      array3: '',
+      array4: '',
     }
   },
+  mounted() {
+    this.bus.$on('sendSpreadsheet', passData => {
+      this.realData = passData
+      this.Array1()
+      this.Array2()
+      this.Array3()
+      this.Array4()
+      this.replaceDoubleToSingle()
+    })
+  },
   methods: {
-    mounted() {
-      this.bus.$on('sendSpreadsheet', passData => {
-        this.realData = JSON.stringify(passData)
+    Array1() {
+      this.array1 = js_beautify(JSON.stringify(this.realData), {
+        indent_size: 2,
+        space_in_empty_paren: true
       })
-      console.log(this.realData)
-
-      this.timer = setTimeout(()=>{   //设置延迟执行
-        console.log('ok');
-      },1000);
     },
-    getRealData() {
-      this.bus.$on('sendSpreadsheet', passData => {
-        this.realData = JSON.stringify(passData)
-      })
-    }
+    Array2() {
+      this.array2 = ''
+      for (let j = 0; j < this.realData[0].length; j++) {
+        var dataTmp = []
+        for (let i = 0; i < this.realData.length; i++) {
+          dataTmp[i] = this.realData[i][j]
+        }
+        this.array2 += JSON.stringify(dataTmp)
+        this.array2 += "\n"
+      }
+    },
+    Array3() {
+      this.array3 = ''
+      var array3Tmp = []
+      for (let j = 0; j < this.realData[0].length; j+=2) {
+        var dataTmp = []
+        for (let i = 0; i < this.realData.length; i++) {
+          dataTmp[0] = this.realData[i][j]
+          dataTmp[1] = this.realData[i][j+1]
+          array3Tmp.push(dataTmp)
+          dataTmp = []
+        }
+        this.array3 += JSON.stringify(array3Tmp)
+        this.array3 += "\n"
+        array3Tmp = []
+      }
+
+    },
+    Array4() {
+      // Use Array to add data
+      var arrays = new Array();
+      for (var i = 1; i < this.realData.length; i++) {
+        var array4Tmp={}; // Must be define inner not outer else index error
+        for (var j = 0; j < this.realData[0].length; j++) {
+          array4Tmp[this.realData[0][j]] = this.realData[i][j]
+        }
+        arrays.push(array4Tmp)
+      }
+      this.array4 = JSON.stringify(arrays);
+      this.array4 = this.array4.replace(/"(.*?)":"(.*?)"/gm, "$1:\"$2\"")
+      this.array4 = this.array4.replace(/(.*?):"(\d+)"/gm, "$1:$2")
+    },
+    replaceDoubleToSingle() {
+      this.array1 = this.array1.replace(/"/gm, "\'")
+      this.array2 = this.array2.replace(/"/gm, "\'")
+      this.array3 = this.array3.replace(/"/gm, "\'")
+      this.array4 = this.array4.replace(/"/gm, "\'")
+    },
   }
 }
 </script>

@@ -16,7 +16,10 @@ var data = [
 ]
 var options = {
   data: data,
+  minDimensions: [20,50],
+  defaultColWidth: 70,
   allowToolbar:true,
+  allowRenameColumn: true,
   columns: [
     { type: 'text', title: 'A', width: '70px' },
     { type: 'text', title: 'B', width: '70px' },

@@ -1,27 +1,49 @@
 <template>
-  <div class="wholeStyle">
-    <p>Convert all of data to a 2-dimension array.</p>
+  <div>
+    <div class="divHint">Convert all of data to a 2-dimension array.</div>
     <el-input
+      class="inputStyle"
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array1">
     </el-input>
-    <p>Convert to a 1-dimension array every column.</p>
+    <div class="divHint">Convert to a 1-dimension array every column.</div>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array2">
     </el-input>
-    <p>Convert to a 2-dimension array every 2 column.</p>
+    <div class="divHint">Convert to a 2-dimension array every 2 column.</div>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array3">
     </el-input>
-    <p>Object + Array, Row 1 is Attribute Name.</p>
+    <div class="divHint">
+      <label style="text-align:left">Convert to a 2-dimension array every</label>
+      <select name="columns" id="lang">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+      <label>column.</label>
+    </div>
+    <el-input
+      type="textarea"
+      :autosize="{ minRows: 2}"
+      placeholder=""
+      v-model="array5">
+    </el-input>
+    <div class="divHint">Object + Array, Row 1 is Attribute Name.</div>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
@@ -42,6 +64,8 @@ export default {
       array2: '',
       array3: '',
       array4: '',
+      array5: '',
+      num: '',
     }
   },
   mounted() {
@@ -51,7 +75,8 @@ export default {
       this.Array2()
       this.Array3()
       this.Array4()
-      this.replaceDoubleToSingle()
+      this.Array5()
+      this.replaceString()
     })
   },
   methods: {
@@ -103,24 +128,55 @@ export default {
       this.array4 = this.array4.replace(/"(.*?)":"(.*?)"/gm, "$1:\"$2\"")
       this.array4 = this.array4.replace(/(.*?):"(\d+)"/gm, "$1:$2")
     },
-    replaceDoubleToSingle() {
+    Array5() {
+      var num = parseInt(document.getElementById('lang').value)
+      this.array5 = ''
+      var array5Tmp = []
+      for (let j = 0; j < this.realData[0].length; j+=num) {
+        var dataTmp = []
+        for (let i = 0; i < this.realData.length; i++) {
+          for (let k = 0; k < num; k ++){
+            dataTmp[k] = this.realData[i][j+k]
+          }
+          array5Tmp.push(dataTmp)
+          dataTmp = []
+        }
+        this.array5 += JSON.stringify(array5Tmp)
+        this.array5 += "\n"
+        array5Tmp = []
+      }
+
+    },
+    replaceString() {
+      // Replace double to single
       this.array1 = this.array1.replace(/"/gm, "\'")
       this.array2 = this.array2.replace(/"/gm, "\'")
       this.array3 = this.array3.replace(/"/gm, "\'")
       this.array4 = this.array4.replace(/"/gm, "\'")
+      this.array5 = this.array5.replace(/"/gm, "\'")
+
+      // Replace null to ''
+      this.array4 = this.array4.replace(/null/gm, "\'\'")
+      this.array5 = this.array5.replace(/null/gm, "\'\'")
     },
   }
 }
 </script>
 
-<style lang='scss' scoped>
-.el-input {
-  font-family: 微软雅黑,serif
+<style lang='scss'>
+.divHint {
+  font-family: sans-serif;
+  text-align: left;
+  font-weight: bold;
 }
-.el-textarea__inner {
-  font-family: 微软雅黑,serif
-}
-element.style {
-  font-family: sans-serif
-}
+
+//::v-deep.el-textarea__inner{
+//  font-family: 微软雅黑;
+//  color: #42b983;
+//}
+//::v-deep.inputStyle {
+//  .el-textarea__inner {
+//    font-family: 微软雅黑;
+//  }
+//}
 </style>

@@ -22,7 +22,7 @@ var options = {
   minDimensions: [16,34],
   defaultColWidth: 70,
   allowToolbar: true,
-  allowRenameColumn: true,//禁止对excel列 进行增加删除操作
+  allowRenameColumn: true,
   allowDeleteColumn: true,
   allowDragInsertColumn: true,
   allowInsertColumn: true,
@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     getResult() {
-      console.log(data)
       var realData = this.getRealData()
       this.bus.$emit('sendSpreadsheet', realData)
       console.log(JSON.stringify(realData))

@@ -1,26 +1,81 @@
 <template>
   <div>
-      <el-form>
-        <el-form-item>
-          <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>
-          <el-input type="text" v-model="subtitleTmp" auto-complete="off" placeholder="Subtitle"></el-input>
+    <el-form label-width="120px">
+      <el-row>
+          <el-form-item label="Title">
+            <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>
+          </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="Title Font Size">
+          <el-input type="text" v-model="titleFontSizeTmp" auto-complete="off" placeholder="Title Font Size"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-col :span="22">
+          <el-form-item label="Title Font Color">
+            <el-input v-model="titleFontColorTmp" auto-complete="off" placeholder="Title Font Color"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-color-picker v-model="titleFontColorTmp" show-alpha></el-color-picker>
+      </el-row>
+      <el-row>
+        <el-form-item label="Subtitle">
+          <el-input type="text" v-model="subtitleTmp" auto-complete="off" placeholder="Subitle"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="xAxis Name">
           <el-input type="text" v-model="xAxisNameTmp" auto-complete="off" placeholder="xAxis Name"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="yAxis Name">
           <el-input type="text" v-model="yAxisNameTmp" auto-complete="off" placeholder="yAxis Name"></el-input>
-          <div>
-            <a class="hint">Save as Image:</a>
-            <el-radio v-model="isSaveImg" label="0">False</el-radio>
-            <el-radio v-model="isSaveImg" label="1">True</el-radio>
-          </div>
-          <div>
-            <a class="hint">Grid is Rectangle:</a>
-            <el-radio v-model="isRectangle" label="0">False</el-radio>
-            <el-radio v-model="isRectangle" label="1">True</el-radio>
-          </div>
         </el-form-item>
-        <el-form-item style="width: 100%">
-          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>
+      </el-row>
+      <el-row>
+        <el-form-item label="Save as Image:">
+          <el-radio v-model="isSaveImg" label="0">False</el-radio>
+          <el-radio v-model="isSaveImg" label="1">True</el-radio>
         </el-form-item>
-      </el-form>
+      </el-row>
+      <el-row>
+        <el-form-item label="Grid is Shown:">
+          <el-radio v-model="isRectangle" label="0">False</el-radio>
+          <el-radio v-model="isRectangle" label="1">True</el-radio>
+        </el-form-item>
+      </el-row>
+      <el-form-item style="width: 100%">
+        <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>
+      </el-form-item>
+    </el-form>
+
+<!--      <el-form>-->
+<!--        <el-form-item>-->
+<!--          <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>-->
+<!--          <el-input type="text" v-model="titleFontSizeTmp" auto-complete="off" placeholder="Title Font Size"></el-input>-->
+<!--            <label class="hint">Title Font Color</label>-->
+<!--            <el-input style="width: 300px" type="text" v-model="titleFontColorTmp" auto-complete="off" placeholder="Title Font Color"></el-input>-->
+<!--            <el-color-picker v-model="titleFontColorTmp" show-alpha></el-color-picker>-->
+<!--          <el-input type="text" v-model="subtitleTmp" auto-complete="off" placeholder="Subtitle"></el-input>-->
+<!--          <el-input type="text" v-model="xAxisNameTmp" auto-complete="off" placeholder="xAxis Name"></el-input>-->
+<!--          <el-input type="text" v-model="yAxisNameTmp" auto-complete="off" placeholder="yAxis Name"></el-input>-->
+<!--          <div>-->
+<!--            <a class="hint">Save as Image:</a>-->
+<!--            <el-radio v-model="isSaveImg" label="0">False</el-radio>-->
+<!--            <el-radio v-model="isSaveImg" label="1">True</el-radio>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <a class="hint">Grid is Rectangle:</a>-->
+<!--            <el-radio v-model="isRectangle" label="0">False</el-radio>-->
+<!--            <el-radio v-model="isRectangle" label="1">True</el-radio>-->
+<!--          </div>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item style="width: 100%">-->
+<!--          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
   </div>
 </template>
 
@@ -32,6 +87,8 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
       return {
         strTmp: this.$store.getters.getScriptStr,
         titleTmp: '',
+        titleFontSizeTmp: '',
+        titleFontColorTmp: '',
         subtitleTmp: '',
         xAxisNameTmp: '',
         yAxisNameTmp: '',
@@ -44,6 +101,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.strTmp = this.$store.getters.getScriptStr
         this.strTmp = this.strTmp.replace(/\n/gm, '')
         this.changeTitle()
+        this.changeTitleStyle()
         this.changeSubtitle()
         this.changeXAxisName()
         this.changeYAxisName()
@@ -70,6 +128,34 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           }
         }
       },
+      changeTitleStyle() {
+        if (this.titleFontSizeTmp != '') {
+          if (this.strTmp.match(/text:(.*?),/gm) != null){
+            if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm) != null) {
+              if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (.*?),(.*?)}/gm) != null) {
+                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + this.titleFontSizeTmp + ",$5},")
+              } else {
+                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + this.titleFontSizeTmp + ",$3},")
+              }
+            } else {
+              this.strTmp = this.strTmp.replace(/text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + this.titleFontSizeTmp + ", },")
+            }
+          }
+        }
+        if (this.titleFontColorTmp != '') {
+          if (this.strTmp.match(/text:(.*?),/gm) != null){
+            if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm) != null) {
+              if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*)color: (.*?),(.*?)}/gm) != null) {
+                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*)color: \"(.*?)\",(.*?)}/gm, "text:$1,$2textStyle: {$3color: \"" + this.titleFontColorTmp + "\",$5}")
+              } else {
+                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm, "text:$1,$2textStyle: { color: \"" + this.titleFontColorTmp + "\",$3}")
+              }
+            } else {
+              this.strTmp = this.strTmp.replace(/text:(.*?),/gm, "text:$1, textStyle: { color: \"" + this.titleFontColorTmp + "\", }")
+            }
+          }
+        }
+      },
       changeSubtitle() {
         // Hold on when value is empty, change to empty when value is null
         if (this.subtitleTmp != '') {
@@ -90,7 +176,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.xAxisNameTmp == 'null') {
           this.xAxisNameTmp = ''
         }
-        if (this.strTmp.match(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
+        if (this.strTmp.match(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null && this.strTmp.match(/series:/gm) == null) {
           this.strTmp = this.strTmp.replace(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "xAxis: {$1name: '"+ this.xAxisNameTmp +"'$3}")
         } else {
           this.strTmp = this.strTmp.replace(/xAxis: {(.*?)}/gm, "xAxis: { name:'"+ this.xAxisNameTmp +"',$1}")
@@ -103,7 +189,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.yAxisNameTmp == 'null') {
           this.yAxisNameTmp = ''
         }
-        if (this.strTmp.match(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
+        if (this.strTmp.match(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null && this.strTmp.match(/series:/gm) == null) {
           this.strTmp = this.strTmp.replace(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "yAxis: {$1name: '"+ this.yAxisNameTmp +"'$3}")
         } else {
           this.strTmp = this.strTmp.replace(/yAxis: {(.*?)}/gm, "yAxis: { name:'"+ this.yAxisNameTmp +"',$1}")
@@ -152,7 +238,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.isRectangle == '1') {
           if (this.strTmp.match(/grid: {(.*)show: false(.*)}/gm) != null){
             this.strTmp = this.strTmp.replace(/grid: {(.*)show: false(.*)}/gm, "grid: {$1show: true$2}")
-          } else {
+          } else if (this.strTmp.match(/grid: {(.*)show: true(.*)}/gm) == null){
             this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
               "  grid: {\n" +
               "    show: true\n" +
@@ -188,5 +274,8 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
 .hint {
   position: absolute;
   left: 0px;
+}
+.el-form>>>.el-form-item__label {
+  text-align: left;
 }
 </style>

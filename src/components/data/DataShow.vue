@@ -127,6 +127,7 @@ export default {
       this.array4 = JSON.stringify(arrays);
       this.array4 = this.array4.replace(/"(.*?)":"(.*?)"/gm, "$1:\"$2\"")
       this.array4 = this.array4.replace(/(.*?):"(\d+)"/gm, "$1:$2")
+
     },
     Array5() {
       var num = parseInt(document.getElementById('lang').value)
@@ -145,7 +146,6 @@ export default {
         this.array5 += "\n"
         array5Tmp = []
       }
-
     },
     replaceString() {
       // Replace double to single

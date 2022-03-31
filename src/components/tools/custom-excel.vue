@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button v-on:click="getExcelData">GetData</button>
-    <button v-on:click="addColumn">AddColumn</button>
+    <button class="getRsltBtn" v-on:click="getResult">Generate Result</button>
     <div id="spreadsheet"></div>
   </div>
 </template>
@@ -20,7 +19,7 @@ var data = [
 var options = {
   props: ['sheetData'],
   data: data,
-  minDimensions: [20,50],
+  minDimensions: [16,34],
   defaultColWidth: 70,
   allowToolbar: true,
   allowRenameColumn: true,//禁止对excel列 进行增加删除操作
@@ -48,11 +47,12 @@ var options = {
 }
 export default {
   mounted: function () {
-    let spreadsheet = jexcel(this.$el, options)
+    // let spreadsheet = jexcel(this.$el, options)
+    let spreadsheet = jexcel(document.getElementById('spreadsheet'), options)
     Object.assign(this, { spreadsheet })
   },
   methods: {
-    getExcelData() {
+    getResult() {
       console.log(data)
       var realData = this.getRealData()
       this.bus.$emit('sendSpreadsheet', realData)
@@ -87,11 +87,36 @@ export default {
     },
     addColumn() {
 
+    },
+    clearData() {
+
     }
   },
 }
 </script>
 
-<style scoped>
-
+<style lang='scss' scoped>
+.getRsltBtn {
+  position: absolute;
+  right: 0px;
+  top: 70px;
+  width: 100px;
+  height: 28px;
+  z-index: 2;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #FF7F50;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  padding: 7px 9px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #FF4500;
+}
 </style>

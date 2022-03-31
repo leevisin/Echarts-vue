@@ -169,14 +169,8 @@ export default {
   text-align: left;
   font-weight: bold;
 }
+textarea.el-textarea__inner {
+  font-family: sans-serif;
+}
 
-//::v-deep.el-textarea__inner{
-//  font-family: 微软雅黑;
-//  color: #42b983;
-//}
-//::v-deep.inputStyle {
-//  .el-textarea__inner {
-//    font-family: 微软雅黑;
-//  }
-//}
 </style>

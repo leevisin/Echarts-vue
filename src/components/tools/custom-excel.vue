@@ -18,6 +18,7 @@ var data = [
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', ],
 ]
 var options = {
+  props: ['sheetData'],
   data: data,
   minDimensions: [20,50],
   defaultColWidth: 70,
@@ -52,6 +53,7 @@ export default {
   },
   methods: {
     getExcelData() {
+      console.log(data)
       var realData = this.getRealData()
       this.bus.$emit('sendSpreadsheet', realData)
       console.log(JSON.stringify(realData))
@@ -86,7 +88,7 @@ export default {
     addColumn() {
 
     }
-  }
+  },
 }
 </script>
 

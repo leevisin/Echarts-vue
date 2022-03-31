@@ -1,27 +1,27 @@
 <template>
-  <div>
-    <div>Convert all of data to a 2-dimension array.</div>
+  <div class="wholeStyle">
+    <p>Convert all of data to a 2-dimension array.</p>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array1">
     </el-input>
-    <div>Convert to a 1-dimension array every column.</div>
+    <p>Convert to a 1-dimension array every column.</p>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array2">
     </el-input>
-    <div>Convert to a 2-dimension array every 2 column.</div>
+    <p>Convert to a 2-dimension array every 2 column.</p>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
       placeholder=""
       v-model="array3">
     </el-input>
-    <div>Object + Array, Row 1 is Attribute Name.</div>
+    <p>Object + Array, Row 1 is Attribute Name.</p>
     <el-input
       type="textarea"
       :autosize="{ minRows: 2}"
@@ -113,6 +113,14 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang='scss' scoped>
+.el-input {
+  font-family: 微软雅黑,serif
+}
+.el-textarea__inner {
+  font-family: 微软雅黑,serif
+}
+element.style {
+  font-family: sans-serif
+}
 </style>

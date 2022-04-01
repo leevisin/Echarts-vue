@@ -64,13 +64,20 @@ export default {
     },
     //点击保存下载图片
     downloadFile() {
-      let aLink = document.createElement('a');
-      let blob = this.base64ToBlob();
-      let evt = document.createEvent('HTMLEvents');
-      evt.initEvent('click', true, true);
-      aLink.download = "积分趋势效果统计图"; //下载图片的名称
-      aLink.href = URL.createObjectURL(blob);
-      aLink.click();
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+      const sleepToRun = async () => {
+        await sleep(3000)
+        let aLink = document.createElement('a');
+        let blob = this.base64ToBlob();
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent('click', true, true);
+        aLink.download = "积分趋势效果统计图"; //下载图片的名称
+        aLink.href = URL.createObjectURL(blob);
+        console.log(aLink.href)
+        // aLink.click();
+      }
+      sleepToRun()
+
     },
     exportImg() { //echart返回一个 base64 的 URL
       let myChart = this.$echarts.init(
@@ -104,7 +111,7 @@ export default {
       this.initChart();
       this.changeChart(this.$store.getters.getScriptStr);
     }
-
+    this.downloadFile()
     // 接收编辑器组件传来的新的图表配置信息代码
     this.bus.$on('sendScript', res => {
       this.chartOption = res[0]

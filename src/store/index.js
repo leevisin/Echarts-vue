@@ -30,6 +30,7 @@ const store = new Vuex.Store({
       '    ]\n' +
       '};',
     spreadsheet: '',
+    cover: '',
   },
   mutations: {
     setUserName(state, aUserName){
@@ -52,7 +53,10 @@ const store = new Vuex.Store({
     },
     setSpreadsheet(state, aSpreadsheet){
       state.spreadsheet = aSpreadsheet;
-    }
+    },
+    setCover(state, aCover){
+      state.cover = aCover;
+    },
   },
   getters: {
     getAge(state) {
@@ -76,6 +80,9 @@ const store = new Vuex.Store({
     getSpreadsheet(state) {
       return state.spreadsheet;
     },
+    getCover(state) {
+      return state.cover;
+    },
   },
   actions: {
     getAge(context) {
@@ -98,6 +105,9 @@ const store = new Vuex.Store({
     },
     getSpreadsheet(context) {
       context.commit('getSpreadsheet');
+    },
+    getCover(context) {
+      context.commit('getCover');
     },
   }
 })

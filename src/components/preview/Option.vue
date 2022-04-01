@@ -41,6 +41,12 @@
         </el-form-item>
       </el-row>
       <el-row>
+        <el-form-item label="Data Zoom:">
+          <el-radio v-model="isDataZoom" label="0">False</el-radio>
+          <el-radio v-model="isDataZoom" label="1">True</el-radio>
+        </el-form-item>
+      </el-row>
+      <el-row>
         <el-form-item label="Grid is Shown:">
           <el-radio v-model="isRectangle" label="0">False</el-radio>
           <el-radio v-model="isRectangle" label="1">True</el-radio>
@@ -93,6 +99,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         xAxisNameTmp: '',
         yAxisNameTmp: '',
         isSaveImg: '',
+        isDataZoom: '',
         isRectangle: '',
       }
     },
@@ -106,6 +113,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeXAxisName()
         this.changeYAxisName()
         this.changeSaveImg()
+        this.changeDataZoom()
         this.changeIsRectangle()
         // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
@@ -227,6 +235,40 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           }
         }
         console.log(this.strTmp)
+      },
+      changeDataZoom() {
+        if (this.isDataZoom == '') {
+          return
+        }
+        if (this.isDataZoom == '0') {
+          this.strTmp = this.strTmp.replace(/dataZoom: \{(.*?)(\},|\})/gm, "")
+        }
+        if (this.isDataZoom == '1') {
+          if (this.strTmp.match(/dataZoom:(.*)\{(.*)yAxisIndex:(.*)"none"(.*)\}/gm) != null) {
+            return
+          } else if (this.strTmp.match(/dataZoom:/gm) != null) {
+            this.strTmp = this.strTmp.replace(/dataZoom: \{(.*?)(\},|\})/gm, "dataZoom: { yAxisIndex: \"none\" },")
+          } else if (this.strTmp.match(/feature:/gm) != null) {
+            this.strTmp = this.strTmp.replace(/feature: {/gm, "feature: { dataZoom: { yAxisIndex: \"none\" },")
+          } else if (this.strTmp.match(/toolbox:/gm) != null) {
+            this.strTmp = this.strTmp.replace(/toolbox: {/gm, "toolbox: {\n" +
+              "    show: true,\n" +
+              "    feature: {\n" +
+              "      dataZoom: { yAxisIndex: \"none\" },\n" +
+              "    }\n" +
+              "  },")
+          } else {
+            this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
+              "  toolbox: {\n" +
+              "    show: true,\n" +
+              "    feature: {\n" +
+              "      dataZoom: {\n" +
+              "        yAxisIndex: \"none\"\n" +
+              "      },\n" +
+              "    }\n" +
+              "  },")
+          }
+        }
       },
       changeIsRectangle() {
         if (this.isRectangle == '') {

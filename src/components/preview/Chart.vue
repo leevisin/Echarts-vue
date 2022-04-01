@@ -182,13 +182,12 @@ export default {
           type: 'radar',
           data: 'option = {\n' +
             '  title: {\n' +
-            '    text: \'Basic Radar Chart\'\n' +
+            '    text: \'Basic Radar Chart\',\n' +
             '  },\n' +
             '  legend: {\n' +
             '    data: [\'Allocated Budget\', \'Actual Spending\']\n' +
             '  },\n' +
             '  radar: {\n' +
-            '    // shape: \'circle\',\n' +
             '    indicator: [\n' +
             '      { name: \'Sales\', max: 6500 },\n' +
             '      { name: \'Administration\', max: 16000 },\n' +

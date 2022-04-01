@@ -52,6 +52,14 @@
           <el-radio v-model="isRectangle" label="1">True</el-radio>
         </el-form-item>
       </el-row>
+      <el-row>
+        <el-col :span="22">
+          <el-form-item label="BG Color">
+            <el-input v-model="backgroundColorTmp" auto-complete="off" placeholder="Background Color, Grid Must be Shown"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-color-picker v-model="backgroundColorTmp" show-alpha></el-color-picker>
+      </el-row>
       <el-form-item style="width: 100%">
         <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>
       </el-form-item>
@@ -101,6 +109,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         isSaveImg: '',
         isDataZoom: '',
         isRectangle: '',
+        backgroundColorTmp: '',
       }
     },
     methods: {
@@ -115,6 +124,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeSaveImg()
         this.changeDataZoom()
         this.changeIsRectangle()
+        this.changeBackgroundColor()
         // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 2,
@@ -144,6 +154,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
                 this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + this.titleFontSizeTmp + ",$5},")
               } else {
                 this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + this.titleFontSizeTmp + ",$3},")
+                console.log("run here")
               }
             } else {
               this.strTmp = this.strTmp.replace(/text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + this.titleFontSizeTmp + ", },")
@@ -275,16 +286,27 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           return
         }
         if (this.isRectangle == '0') {
-          this.strTmp = this.strTmp.replace(/grid: {(.*)show: true(.*)}/gm, "grid: {$1show: false$2}")
+          this.strTmp = this.strTmp.replace(/grid: {(.*)show: true,(.*)}/gm, "grid: {$1show: false,$2}")
         }
         if (this.isRectangle == '1') {
-          if (this.strTmp.match(/grid: {(.*)show: false(.*)}/gm) != null){
-            this.strTmp = this.strTmp.replace(/grid: {(.*)show: false(.*)}/gm, "grid: {$1show: true$2}")
-          } else if (this.strTmp.match(/grid: {(.*)show: true(.*)}/gm) == null){
+          if (this.strTmp.match(/grid: {(.*)show: false,(.*)}/gm) != null){
+            this.strTmp = this.strTmp.replace(/grid: {(.*)show: false,(.*)}/gm, "grid: {$1show: true,$2}")
+          } else if (this.strTmp.match(/grid: {(.*)show: true,(.*)}/gm) == null){
             this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
               "  grid: {\n" +
-              "    show: true\n" +
+              "    show: true,\n" +
               "  },")
+          }
+        }
+      },
+      changeBackgroundColor() {
+        if (this.backgroundColorTmp != '') {
+          if (this.strTmp.match(/grid: {(.*?)show: true,(.*?)}/gm) != null) {
+            if (this.strTmp.match(/grid: {(.*?)show: true,(.*?)backgroundColor: "(.*?)",(.*?)}/gm) != null) {
+              this.strTmp = this.strTmp.replace(/grid: {(.*?)show: true,(.*?)backgroundColor: "(.*?)",(.*?)}/gm, "grid: {$1show: true,$2backgroundColor: \"" + this.backgroundColorTmp + "\",$4}")
+            } else {
+              this.strTmp = this.strTmp.replace(/grid: {(.*?)show: true,(.*?)}/gm, "grid: {$1show: true, backgroundColor:\"" + this.backgroundColorTmp + "\",$2}")
+            }
           }
         }
       },

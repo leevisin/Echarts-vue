@@ -1,6 +1,7 @@
 <template>
     <div>
-      <div ref="chartRef" style="width: 1200px;height: 880px;"></div>
+<!--      <button @click="downloadFile">DownLoad</button>-->
+      <div ref="chartRef" id="Chart" style="width: 1200px;height: 880px;"></div>
     </div>
 </template>
 
@@ -60,6 +61,38 @@ export default {
         // 打印错误信息
         console.log(e)
       }
+    },
+    //点击保存下载图片
+    downloadFile() {
+      let aLink = document.createElement('a');
+      let blob = this.base64ToBlob();
+      let evt = document.createEvent('HTMLEvents');
+      evt.initEvent('click', true, true);
+      aLink.download = "积分趋势效果统计图"; //下载图片的名称
+      aLink.href = URL.createObjectURL(blob);
+      aLink.click();
+    },
+    exportImg() { //echart返回一个 base64 的 URL
+      let myChart = this.$echarts.init(
+        document.getElementById("Chart")
+      );
+      return myChart.getDataURL({
+        type: 'png',
+        pixelRatio: 1,
+        backgroundColor: '#fff'
+      })
+    },
+    base64ToBlob() { //将base64转换blob
+      let img = this.exportImg();
+      let parts = img.split(';base64,');
+      let contentType = parts[0].split(':')[1];
+      let raw = window.atob(parts[1]);
+      let rawLength = raw.length;
+      let uInt8Array = new Uint8Array(rawLength);
+      for (let i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+      }
+      return new Blob([uInt8Array], { type: contentType });
     },
   },
   mounted() {

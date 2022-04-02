@@ -7,7 +7,16 @@
             <el-input v-model="title" auto-complete="off" placeholder="Title"></el-input>
           </el-form-item>
         </el-col>
+        <el-upload
+          action="http://localhost:8443/upload"
+          :on-preview="handlePreview"
+          accept='.png'
+        >
+          <el-button size="small" type="primary">Upload Cover</el-button>
+        </el-upload>
         <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="addChart">Add Chart Template</el-button>
+        <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="downloadChart">Download Chart</el-button>
+<!--        <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="downloadChart">Download Chart</el-button>-->
       </el-row>
     </el-form>
     <el-row style="height: 850px; overflow: auto">
@@ -38,6 +47,7 @@ export default {
   data () {
     return {
       title: '',
+      coverTmp: '',
       charts: [
         {
           cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/bar-simple.webp?_v_=1635740497748',
@@ -73,7 +83,7 @@ export default {
     addChart() {
       this.$axios
         .post('/addChart', {
-          cover: this.$store.getters.getCover,
+          cover: this.coverTmp,
           title: this.title,
           type: '',
           data: this.$store.getters.getScriptStr,
@@ -94,6 +104,20 @@ export default {
         .catch(failResponse => {
 
         })
+    },
+    handlePreview(file){
+      window.open(file.response.url);
+      console.log(file.response.url);
+      this.coverTmp = file.response.url
+    },
+    downloadChart() {
+      let aLink = document.createElement('a');
+      let evt = document.createEvent('HTMLEvents');
+      evt.initEvent('click', true, true);
+      aLink.download = "Echarts"; // Save Img Name
+      aLink.href = this.$store.getters.getCover
+      console.log(aLink.href)
+      aLink.click(); // Use for download
     }
   }
 }

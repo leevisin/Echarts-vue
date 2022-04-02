@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       navList: [
-        // {name: '/chart', navItem: 'Chart'},
+        {name: '/chart', navItem: 'Chart'},
         {name: '/preview', navItem: 'Preview'},
         {name: '/data', navItem: 'Data'},
         {name: '/user', navItem: 'User'}

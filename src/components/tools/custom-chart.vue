@@ -54,7 +54,7 @@ export default {
           'ecStat',
           `const ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';var option;let myChart = echarts.init(this.$refs.chartRef);` +
           script +
-          `myChart.clear();option && myChart.setOption(option);`
+          `myChart.clear();option && myChart.setOption(option);this.downloadFile(myChart);`
         ).bind(this)
         func(this.$echarts, this.$ecStat)
       } catch (e) {
@@ -62,36 +62,33 @@ export default {
         console.log(e)
       }
     },
-    //点击保存下载图片
-    downloadFile() {
+    // Click to download img but now for getting img URL
+    downloadFile(myChart) {
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       const sleepToRun = async () => {
-        await sleep(3000)
+        await sleep(1500)
         let aLink = document.createElement('a');
-        let blob = this.base64ToBlob();
+        let blob = this.base64ToBlob(myChart);
         let evt = document.createEvent('HTMLEvents');
         evt.initEvent('click', true, true);
-        aLink.download = "积分趋势效果统计图"; //下载图片的名称
+        aLink.download = "Echarts"; // Save Img Name
         aLink.href = URL.createObjectURL(blob);
         console.log(aLink.href)
         this.$store.commit('setCover', aLink.href)
-        // aLink.click();
+        // aLink.click(); // Use for download
       }
       sleepToRun()
 
     },
-    exportImg() { //echart返回一个 base64 的 URL
-      let myChart = this.$echarts.init(
-        document.getElementById("Chart")
-      );
+    exportImg(myChart) { // Echart返回一个 base64 的 URL
       return myChart.getDataURL({
         type: 'png',
         pixelRatio: 1,
         backgroundColor: '#fff'
       })
     },
-    base64ToBlob() { //将base64转换blob
-      let img = this.exportImg();
+    base64ToBlob(myChart) { //将base64转换blob
+      let img = this.exportImg(myChart);
       let parts = img.split(';base64,');
       let contentType = parts[0].split(':')[1];
       let raw = window.atob(parts[1]);
@@ -112,10 +109,9 @@ export default {
       this.initChart();
       this.changeChart(this.$store.getters.getScriptStr);
     }
-    this.downloadFile()
+
     // 接收编辑器组件传来的新的图表配置信息代码
     this.bus.$on('sendScript', res => {
-      this.downloadFile()
       this.chartOption = res[0]
       if (res[1] === null) {
         // 如果接收到的excel表格数据为空，说明可能已经在编辑器内容中定义好了data数据源，不用再做字符串拼接，那么直接渲染图表

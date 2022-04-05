@@ -291,11 +291,15 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.isRectangle == '1') {
           if (this.strTmp.match(/grid: {(.*)show: false,(.*)}/gm) != null){
             this.strTmp = this.strTmp.replace(/grid: {(.*)show: false,(.*)}/gm, "grid: {$1show: true,$2}")
-          } else if (this.strTmp.match(/grid: {(.*)show: true,(.*)}/gm) == null){
-            this.strTmp = this.strTmp.replace(/option = {/gm, "option = {\n" +
-              "  grid: {\n" +
-              "    show: true,\n" +
+          } else if (this.strTmp.match(/grid: {(.*)show: true,(.*)}/gm) != null){
+            return;
+          } else if (this.strTmp.match(/grid: {(.*)}/gm) == null){
+            this.strTmp = this.strTmp.replace(/option = {/gm, "option = {" +
+              "  grid: {" +
+              "    show: true," +
               "  },")
+          } else if (this.strTmp.match(/grid: {(.*)}/gm) != null){
+            this.strTmp = this.strTmp.replace(/grid: {(.*)}/gm, "grid: { show: true,$1}")
           }
         }
       },

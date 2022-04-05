@@ -1,22 +1,33 @@
 <template>
   <div>
-    <el-form label-width="120px">
-      <el-row>
-        <el-col :span="6">
-          <el-form-item label="Title">
+    <el-form>
+      <el-row class="row-style">
+        <el-col :span="3">
+          <el-form-item>
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="downloadChart">Download Current Chart</el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
             <el-input v-model="title" auto-complete="off" placeholder="Title"></el-input>
           </el-form-item>
         </el-col>
-        <el-upload
-          action="http://localhost:8443/upload"
-          :on-preview="handlePreview"
-          accept='.png'
-        >
-          <el-button size="small" type="primary">Upload Cover</el-button>
-        </el-upload>
-        <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="addChart">Add Chart Template</el-button>
-        <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="downloadChart">Download Chart</el-button>
-<!--        <el-button type="primary" style="width: 30%;background: #505458;border: none" v-on:click="downloadChart">Download Chart</el-button>-->
+        <el-col :span="3">
+          <el-form-item>
+            <el-upload
+              action="http://localhost:8443/upload"
+              :on-preview="handlePreview"
+              accept='.png'
+            >
+              <el-button type="primary" style="width: 100%;">Upload Chart Cover Image</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="addChart">Add Chart Template</el-button>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
     <el-row style="height: 850px; overflow: auto">
@@ -25,7 +36,7 @@
                   disabled
                   v-for="item in charts"
                   :key="item.id">
-        <el-card style="width: 290px;margin-bottom: 20px;height: 260px;float: left;margin-right: 15px" class="chart"
+        <el-card style="width: 290px;margin-bottom: 20px;height: 280px;float: left;margin-right: 15px" class="chart"
                  bodyStyle="padding:10px" shadow="hover">
           <div class="cover">
             <img :src="item.cover" alt="cover" v-on:click="changeChart(item.data)">
@@ -33,6 +44,8 @@
           <div class="info">
             <div class="title">
               <a>{{item.title}}</a>
+              <a></a>
+              <el-button type="primary" style="position: relative;width: 30%;height: 50%;background: red;border: none;float: right;" v-on:click="deleteChart">Delete</el-button>
             </div>
           </div>
         </el-card>
@@ -84,6 +97,21 @@ export default {
       this.$axios
         .post('/addChart', {
           cover: this.coverTmp,
+          title: this.title,
+          type: '',
+          data: this.$store.getters.getScriptStr,
+        })
+        .then(successResponse => {
+          this.charts = successResponse.data
+        })
+        .catch(failResponse => {
+
+        })
+    },
+    deleteChart() {
+      this.$axios
+        .post('/deleteChart', {
+          cover: this.cover,
           title: this.title,
           type: '',
           data: this.$store.getters.getScriptStr,
@@ -168,5 +196,8 @@ a {
 
 a:link, a:visited, a:focus {
   color: #293c55;
+}
+row-style {
+  display: inline-block;
 }
 </style>

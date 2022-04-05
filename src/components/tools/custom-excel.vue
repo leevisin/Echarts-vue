@@ -1,7 +1,9 @@
 <template>
   <div>
     <button class="getRsltBtn" v-on:click="getResult">Generate Result</button>
-    <div id="spreadsheet"></div>
+<!--    <button  v-on:click="clearExcel">Clear Data</button>-->
+    <button  v-on:click="downloadExcel">Download Excel as CSV File</button>
+    <div ref="spreadsheet" id="spreadsheet"></div>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ var data = [
 var options = {
   props: ['sheetData'],
   data: data,
-  minDimensions: [16,34],
+  minDimensions: [16,33],
   defaultColWidth: 70,
   allowToolbar: true,
   allowRenameColumn: true,
@@ -55,7 +57,6 @@ export default {
     getResult() {
       var realData = this.getRealData()
       this.bus.$emit('sendSpreadsheet', realData)
-      console.log(JSON.stringify(realData))
     },
     getRealData() {
       // Get True Row and Column
@@ -87,8 +88,11 @@ export default {
     addColumn() {
 
     },
-    clearData() {
+    clearExcel() {
 
+    },
+    downloadExcel() {
+      this.spreadsheet.download()
     }
   },
 }

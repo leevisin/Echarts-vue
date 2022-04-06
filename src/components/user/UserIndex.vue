@@ -44,7 +44,6 @@
           <div class="info">
             <div class="title">
               <a>{{item.title}}</a>
-              <a></a>
               <el-button type="primary" style="position: relative;width: 30%;height: 50%;background: red;border: none;float: right;" v-on:click="deleteChart">Delete</el-button>
             </div>
           </div>

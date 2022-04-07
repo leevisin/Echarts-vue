@@ -1,8 +1,6 @@
 <template>
   <div>
-    <keep-alive>
-      <ace :option="scriptStr"></ace>
-    </keep-alive>
+    <ace :option="scriptStr"></ace>
   </div>
 </template>
 

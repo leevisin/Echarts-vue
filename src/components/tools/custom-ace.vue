@@ -115,7 +115,8 @@ export default {
     })
     this.aceEditor.getSession().on('change', this.change)
     this.bus.$on('sendScript', scriptPass => {
-      this.aceEditor.setValue(this.$store.getters.getScriptStr, 1)
+      this.scriptStr = this.$store.getters.getScriptStr
+      this.setAceEditorValue()
     })
   },
   data () {

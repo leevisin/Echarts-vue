@@ -17,7 +17,7 @@ export default {
       if (this.$store.getters.getInit == '0') {
         this.$store.commit('setScriptStr', `option = ${res};`);
       }
-      console.log(this.$store.getters.getScriptStr)
+      // console.log(this.$store.getters.getScriptStr)
     }
   },
   created() {

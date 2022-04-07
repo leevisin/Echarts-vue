@@ -40,6 +40,8 @@ export default {
         .then(successResponse => {
           if (successResponse.data.code === 200) {
             this.$router.replace({path: '/preview'})
+          } else if (successResponse.data.code === 400) {
+            alert("The username or password is incorrect, please re-enter it.")
           }
         })
         .catch(failResponse => {

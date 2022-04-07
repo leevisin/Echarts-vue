@@ -127,7 +127,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeBackgroundColor()
         // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
-          indent_size: 2,
+          indent_size: 4,
           space_in_empty_paren: true
         })
         this.$store.commit('setScriptStr', this.strTmp)
@@ -148,16 +148,16 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
       },
       changeTitleStyle() {
         if (this.titleFontSizeTmp != '') {
-          if (this.strTmp.match(/text:(.*?),/gm) != null){
-            if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm) != null) {
-              if (this.strTmp.match(/text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (.*?),(.*?)}/gm) != null) {
-                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + this.titleFontSizeTmp + ",$5},")
+          if (this.strTmp.match(/[^sub]text:(.*?),/gm) != null){
+            if (this.strTmp.match(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm) != null) {
+              if (this.strTmp.match(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (.*?),(.*?)}/gm) != null) {
+                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + this.titleFontSizeTmp + ",$5},")
               } else {
-                this.strTmp = this.strTmp.replace(/text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + this.titleFontSizeTmp + ",$3},")
+                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + this.titleFontSizeTmp + ",$3},")
                 console.log("run here")
               }
             } else {
-              this.strTmp = this.strTmp.replace(/text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + this.titleFontSizeTmp + ", },")
+              this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + this.titleFontSizeTmp + ", },")
             }
           }
         }

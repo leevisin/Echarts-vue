@@ -4,6 +4,7 @@
       <button class="el-icon-refresh" v-on:click="refreshChartData">
         Refresh
       </button>
+      <div class="editorTitle">Ace Editor</div>
       <button class="run-button" @click="sendChartOption">Run</button>
       <vue-xlsx-table class="xls-button" @on-select-file="handleSelectedFile">
         Upload
@@ -113,9 +114,13 @@ export default {
       enableBasicAutocompletion: true
     })
     this.aceEditor.getSession().on('change', this.change)
+    this.bus.$on('sendScript', scriptPass => {
+      this.aceEditor.setValue(this.$store.getters.getScriptStr, 1)
+    })
   },
   data () {
     return {
+      scriptStr: '',
       aceEditor: null,
       toggle: false,
       wrap: true,
@@ -176,10 +181,10 @@ export default {
       }
       // Format scriptStr as we can understand
       this.scriptStr = js_beautify(this.scriptStr, {
-        indent_size: 2,
+        indent_size: 4,
         space_in_empty_paren: true
       })
-      console.log(this.scriptStr)
+      // console.log(this.scriptStr)
       // 更新store中scriptStr的值
       this.$store.commit('setScriptStr', this.scriptStr)
       let script = this.scriptStr
@@ -288,11 +293,22 @@ export default {
     z-index: 2;
   }
 
-  .el-icon-refresh {
+  .editorTitle {
     position: absolute;
     left: 0px;
     top: -28px;
     height: 25px;
+    z-index: 2;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .el-icon-refresh {
+    position: absolute;
+    right: 148px;
+    top: -28px;
+    width: 88px;
+    height: 28px;
     z-index: 2;
   }
 }

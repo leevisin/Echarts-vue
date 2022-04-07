@@ -82,7 +82,7 @@ export default {
   methods: {
     Array1() {
       this.array1 = js_beautify(JSON.stringify(this.realData), {
-        indent_size: 2,
+        indent_size: 4,
         space_in_empty_paren: true
       })
     },

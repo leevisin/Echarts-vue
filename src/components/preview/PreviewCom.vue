@@ -1,10 +1,10 @@
 <template>
   <el-tabs class="categories" type="border-card" @tab-click="handleClick">
-    <el-tab-pane label="Option Preview">
-      <Option></Option>
-    </el-tab-pane>
     <el-tab-pane label="Edit Code">
       <Code></Code>
+    </el-tab-pane>
+    <el-tab-pane label="Option Preview">
+      <Option></Option>
     </el-tab-pane>
     <el-tab-pane label="Charts Selection">
       <Chart></Chart>

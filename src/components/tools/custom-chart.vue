@@ -73,7 +73,7 @@ export default {
         evt.initEvent('click', true, true);
         aLink.download = "Echarts"; // Save Img Name
         aLink.href = URL.createObjectURL(blob);
-        console.log(aLink.href)
+        // console.log(aLink.href)
         this.$store.commit('setCover', aLink.href)
         // aLink.click(); // Use for download
       }

@@ -10,7 +10,7 @@ export default {
   methods: {
     initChart() {
       let myChart = this.$echarts.init(this.$refs.chartRef);
-      //配置图表
+      // Chart Configuration
       let option = {
         title: {
           text: 'Title Test',
@@ -66,7 +66,7 @@ export default {
     downloadFile(myChart) {
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       const sleepToRun = async () => {
-        await sleep(1500)
+        await sleep(3000)
         let aLink = document.createElement('a');
         let blob = this.base64ToBlob(myChart);
         let evt = document.createEvent('HTMLEvents');

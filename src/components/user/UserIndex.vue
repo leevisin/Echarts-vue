@@ -44,7 +44,7 @@
           <div class="info">
             <div class="title">
               <a>{{item.title}}</a>
-              <el-button type="primary" style="position: relative;width: 30%;height: 50%;background: red;border: none;float: right;" v-on:click="deleteChart">Delete</el-button>
+              <el-button type="primary" style="position: relative;width: 30%;height: 50%;background: red;border: none;float: right;" v-on:click="deleteChart(item.cover)">Delete</el-button>
             </div>
           </div>
         </el-card>
@@ -60,28 +60,7 @@ export default {
     return {
       title: '',
       coverTmp: '',
-      charts: [
-        {
-          cover: 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/thumb/bar-simple.webp?_v_=1635740497748',
-          title: 'Basic Bar',
-          type: 'bar',
-          data: 'option = {\n' +
-            '  xAxis: {\n' +
-            '    type: \'category\',\n' +
-            '    data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +
-            '  },\n' +
-            '  yAxis: {\n' +
-            '    type: \'value\'\n' +
-            '  },\n' +
-            '  series: [\n' +
-            '    {\n' +
-            '      data: [120, 200, 150, 80, 70, 110, 130],\n' +
-            '      type: \'bar\'\n' +
-            '    }\n' +
-            '  ]\n' +
-            '};'
-        },
-      ]
+      charts: [],
     }
   },
   created() {
@@ -107,10 +86,10 @@ export default {
 
         })
     },
-    deleteChart() {
+    deleteChart(cover) {
       this.$axios
         .post('/deleteChart', {
-          cover: this.cover,
+          cover: cover,
           title: this.title,
           type: '',
           data: this.$store.getters.getScriptStr,

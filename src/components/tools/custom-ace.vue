@@ -159,6 +159,26 @@ export default {
     },
     // 点击运行按钮向图表组件传输新的图表配置
     sendChartOption() {
+      // 获取编辑器中语法校验的结果
+      var annotations = this.aceEditor.getSession().getAnnotations();
+      console.log(annotations)
+      function equar(a, b) {
+        // 判断数组的长度
+        if (a.length !== b.length) {
+          return false
+        } else {
+          // 循环遍历数组的值进行比较
+          for (let i = 0; i < a.length; i++) {
+            if (a[i] !== b[i]) {
+              return false
+            }
+          }
+          return true;
+        }
+      }
+      if (!equar(annotations, [])) {
+        return
+      }
       // 点击运行按钮获取编辑器内容，保存到scriptStr
       this.scriptStr = this.aceEditor.getValue()
       // Replace data which is in scriptStr String

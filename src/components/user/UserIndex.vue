@@ -28,6 +28,26 @@
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="addChart">Add Chart Template</el-button>
           </el-form-item>
         </el-col>
+        <el-col :span="3">
+          <el-form-item>
+
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+            Welcome {{ username }}!
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="exitLogin">Sign out</el-button>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
     <el-row style="height: 850px; overflow: auto">
@@ -60,11 +80,13 @@ export default {
     return {
       title: '',
       coverTmp: '',
+      username: '',
       charts: [],
     }
   },
   created() {
     this.updateChart()
+    this.getUsername()
   },
   methods: {
     changeChart(data) {
@@ -106,6 +128,28 @@ export default {
         .post('/updateChart', {})
         .then(successResponse => {
           this.charts = successResponse.data
+        })
+        .catch(failResponse => {
+
+        })
+    },
+    getUsername() {
+      this.$axios
+        .post('/getUsername', {})
+        .then(successResponse => {
+          this.username = successResponse.data
+        })
+        .catch(failResponse => {
+
+        })
+    },
+    exitLogin() {
+      this.$axios
+        .post('/login', {
+          username: ''
+        })
+        .then(successResponse => {
+          this.$router.replace({path: '/login'})
         })
         .catch(failResponse => {
 

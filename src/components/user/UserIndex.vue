@@ -84,9 +84,9 @@ export default {
       charts: [],
     }
   },
-  created() {
-    this.updateChart()
+  mounted() {
     this.getUsername()
+    this.updateChart()
   },
   methods: {
     changeChart(data) {

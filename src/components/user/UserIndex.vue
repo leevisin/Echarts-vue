@@ -9,23 +9,23 @@
         </el-col>
         <el-col :span="3">
           <el-form-item>
-            <el-input v-model="title" auto-complete="off" placeholder="Title"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="3">
-          <el-form-item>
             <el-upload
               action="http://localhost:8443/upload"
               :on-preview="handlePreview"
               accept='.png'
             >
-              <el-button type="primary" style="width: 100%;">Upload Chart Cover Image</el-button>
+              <el-button type="primary" style="width: 100%;background: #CC3333;border: none">Upload Chart Cover Image</el-button>
             </el-upload>
           </el-form-item>
         </el-col>
         <el-col :span="3">
           <el-form-item>
-            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="addChart">Add Chart Template</el-button>
+            <el-input v-model="title" auto-complete="off" placeholder="Chart Name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+            <el-button type="primary" style="width: 100%;border: none" v-on:click="addChart">Add Chart Template</el-button>
           </el-form-item>
         </el-col>
         <el-col :span="3">

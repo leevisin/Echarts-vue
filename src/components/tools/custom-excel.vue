@@ -2,8 +2,8 @@
   <div>
     <button class="getRsltBtn" v-on:click="getResult">Generate Result</button>
 <!--    <button  v-on:click="clearExcel">Clear Data</button>-->
-    <button  v-on:click="downloadExcel">Download Excel as CSV File</button>
-    <div ref="spreadsheet" id="spreadsheet"></div>
+    <button class="downloadExcelBtn" v-on:click="downloadExcel">Download Excel as CSV File</button>
+    <div class="excelStyle" ref="spreadsheet" id="spreadsheet"></div>
   </div>
 </template>
 
@@ -101,11 +101,11 @@ export default {
 <style lang='scss' scoped>
 .getRsltBtn {
   position: absolute;
-  right: 0px;
+  right: 25px;
   top: 70px;
-  width: 100px;
+  width: 120px;
   height: 28px;
-  z-index: 2;
+  z-index: 0;
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -121,5 +121,30 @@ export default {
   border-radius: 4px;
   color: #fff;
   background-color: #FF4500;
+}
+.downloadExcelBtn {
+  position: absolute;
+  top: 70px;
+  right: 145px;
+  width: 200px;
+  height: 28px;
+  z-index: 2;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid lightblue;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: dodgerblue;
+}
+.excelStyle {
+
 }
 </style>

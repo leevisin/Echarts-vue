@@ -1,7 +1,7 @@
 <template>
   <body id="poster">
   <el-form class="login-container" label-position="left" label-width="0px">
-    <h3 class="login_title">System Login In</h3>
+    <h3 class="login_title">System Login</h3>
     <el-form-item>
       <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="Username"></el-input>
     </el-form-item>

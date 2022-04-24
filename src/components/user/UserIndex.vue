@@ -20,17 +20,12 @@
         </el-col>
         <el-col :span="3">
           <el-form-item>
-            <el-input v-model="title" auto-complete="off" placeholder="Chart Name"></el-input>
+            <el-input style="width: 90%;border: none" v-model="title" auto-complete="off" placeholder="Chart Name"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="3">
           <el-form-item>
-            <el-button type="primary" style="width: 100%;border: none" v-on:click="addChart">Add Chart Template</el-button>
-          </el-form-item>
-        </el-col>
-        <el-col :span="3">
-          <el-form-item>
-
+            <el-button type="primary" style="width: 90%;border: none" v-on:click="addChart">Add Chart Template</el-button>
           </el-form-item>
         </el-col>
         <el-col :span="3">
@@ -40,7 +35,14 @@
         </el-col>
         <el-col :span="3">
           <el-form-item>
-            Welcome {{ username }}!
+
+          </el-form-item>
+        </el-col>
+        <el-col :span="3">
+          <el-form-item>
+            <div style="font-family: sans-serif;color: dodgerblue;font-size: large;font-weight: bold">
+              Welcome {{ username }}!
+            </div>
           </el-form-item>
         </el-col>
         <el-col :span="3">

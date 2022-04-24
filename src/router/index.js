@@ -46,7 +46,7 @@ export default new Router({
           name: '/Preview',
           component: PreviewIndex,
           meta: {
-            requireAuth: true
+            requireAuth: true,
           }
         },
         {

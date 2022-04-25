@@ -20,10 +20,6 @@ export default {
   mounted() {
     this.passScriptStr()
   },
-  created() {
-    // this.scriptStr = this.$store.getters.getScriptStr
-    // console.log(this.$store.getters.getScriptStr)
-  }
 }
 </script>
 

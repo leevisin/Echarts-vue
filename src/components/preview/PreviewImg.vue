@@ -9,19 +9,18 @@ export default {
   name: 'PreviewImg',
   methods: {
     getOption(res) {
-      // 接收图表组件传来的option对象，将其转换为字符串形式
+      // Get option Object from Chart component, and turn it to string
       res = JSON.stringify(res,null,2)
-      // 拼接成要返回给编辑器内容的字符串格式，准备传给编辑器子组件
+      // process and pass the string to ace-editor
       res = res.replace(/"/gm,'\'')
       // Only the first time need to set scriptStr through chart
       if (this.$store.getters.getInit == '0') {
         this.$store.commit('setScriptStr', `option = ${res};`);
       }
-      // console.log(this.$store.getters.getScriptStr)
     }
   },
   created() {
-    // console.log(this.$store.getters.getScriptStr)
+
   }
 }
 </script>

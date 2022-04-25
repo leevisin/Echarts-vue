@@ -1,7 +1,6 @@
 <template>
   <div>
     <el-row style="height: 850px; overflow: auto">
-<!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
                   disabled
                   v-for="item in charts"
@@ -19,13 +18,6 @@
         </el-card>
       </el-tooltip>
     </el-row>
-<!--    <el-row>-->
-<!--      <el-pagination-->
-<!--        :current-page="1"-->
-<!--        :page-size="10"-->
-<!--        :total="20">-->
-<!--      </el-pagination>-->
-<!--    </el-row>-->
   </div>
 </template>
 

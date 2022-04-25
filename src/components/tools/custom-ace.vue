@@ -14,32 +14,6 @@
       </button>
     </div>
     <div class="ace-editor" ref="ace"></div>
-<!--    <div class="config-panel" v-show="toggle">-->
-<!--      <div>-->
-<!--        <div class="item">-->
-<!--          <label class="title">语言</label>-->
-<!--          <el-select class="value" v-model="modePath" @change="handleModelPathChange" size="mini" value-key="name">-->
-<!--            <el-option v-for="mode in modeArray"-->
-<!--                       :key="mode.name"-->
-<!--                       :label="mode.name"-->
-<!--                       :value="mode.path">-->
-<!--            </el-option>-->
-<!--          </el-select>-->
-<!--        </div>-->
-
-<!--        <div class="item">-->
-<!--          <label class="title">换行</label>-->
-<!--          <el-select class="value" v-model="wrap" @change="handleWrapChange" size="mini" value-key="name">-->
-<!--            <el-option v-for="wrap in wrapArray"-->
-<!--                       :key="wrap.name"-->
-<!--                       :label="wrap.name"-->
-<!--                       :value="wrap.value">-->
-<!--            </el-option>-->
-<!--          </el-select>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="bookmarklet" @click="toggleConfigPanel"></div>-->
   </div>
 </template>
 
@@ -57,11 +31,6 @@ import 'ace-builds/src-noconflict/ext-language_tools'
 import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/mode-javascript'
 import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
-
-// const themeArray = [{
-//   name: 'monokai',
-//   path: 'ace/theme/monokai'
-// }]
 
 const wrapArray = [{
   name: '开启',
@@ -107,7 +76,7 @@ export default {
       wrap: this.wrap,
       tabSize: 4
     })
-    // 激活自动提示
+    // activate auto hint
     this.aceEditor.setOptions({
       enableSnippets: true,
       enableLiveAutocompletion: true,
@@ -132,42 +101,33 @@ export default {
     }
   },
   methods: {
-    // 点击上传按钮获取excel表数据
+    // click to get Excel data
     handleSelectedFile(convertedData) {
-      // 将数据保存到data中
+      // save data
       this.data = convertedData.body
     },
-    // 点击重置数据按钮，清除excel表数据
+    // clear data
     resetChartData(){
       this.data = null
-    },
-    toggleConfigPanel () {
-      this.toggle = !this.toggle
     },
     change () {
       this.$emit('input', this.aceEditor.getSession().getValue())
     },
-    handleModelPathChange (modelPath) {
-      this.aceEditor.getSession().setMode(modelPath)
-    },
-    handleWrapChange (wrap) {
-      this.aceEditor.getSession().setUseWrapMode(wrap)
-    },
-    // 设置编辑器内容
+    // set editor value
     setAceEditorValue() {
       this.aceEditor.setValue(this.scriptStr, 1)
     },
-    // 点击运行按钮向图表组件传输新的图表配置
+    // pass configuration to chart component
     sendChartOption() {
-      // 获取编辑器中语法校验的结果
+      // get the result of code syntax in editor
       var annotations = this.aceEditor.getSession().getAnnotations();
       console.log(annotations)
       function equar(a, b) {
-        // 判断数组的长度
+        // judge the length of array
         if (a.length !== b.length) {
           return false
         } else {
-          // 循环遍历数组的值进行比较
+          // use loop in array to compare value
           for (let i = 0; i < a.length; i++) {
             if (a[i] !== b[i]) {
               return false
@@ -179,13 +139,13 @@ export default {
       if (!equar(annotations, [])) {
         return
       }
-      // 点击运行按钮获取编辑器内容，保存到scriptStr
+      // get editor code and save to scriptStr
       this.scriptStr = this.aceEditor.getValue()
-      // Replace data which is in scriptStr String
+      // replace data which is in scriptStr String
       if (this.data != null) {
-        // Set the scriptStr as one String to handle
+        // set the scriptStr as one String to handle
         this.scriptStr = this.scriptStr.replace(/\n/gm, '')
-        // Process JSON.stringify(this.data) format
+        // process JSON.stringify(this.data) format
         let dataTmp = JSON.stringify(this.data)
         dataTmp = dataTmp.replace(/"/gm,'\'')
         dataTmp = dataTmp.replace(/'name':/gm,'name:')
@@ -200,30 +160,29 @@ export default {
           this.scriptStr = this.scriptStr.replace(/data: \[(.*?)\]/, 'data: ' + dataName)
         }
       }
-      // Format scriptStr as we can understand
+      // format scriptStr as we can understand
       this.scriptStr = js_beautify(this.scriptStr, {
         indent_size: 4,
         space_in_empty_paren: true
       })
-      // console.log(this.scriptStr)
-      // 更新store中scriptStr的值
+      // update scriptStr value in store
       this.$store.commit('setScriptStr', this.scriptStr)
       let script = this.scriptStr
-      // 将新的 编辑器内容 传给图表组件 (Now this.data is useless, and can be deleted
+      // pass editor value to chart component
       this.bus.$emit('sendScript',[script,this.data])
     },
-    // Use button to refresh ace is the same as scriptStr
+    // use button to refresh ace is the same as scriptStr
     refreshChartData() {
       this.scriptStr = this.$store.getters.getScriptStr
       this.setAceEditorValue()
     },
   },
   watch: {
-    // 监听父组件传来的值
+    // listen value change in father component
     option: function(newVal,oldVal){
-      // 将新值，也就是option编辑器内容字符串，赋值给scriptStr
+      // set new value to scriptStr
       this.scriptStr = newVal
-      // 设置编辑器内容
+      // set editor value
       this.setAceEditorValue()
     }
   },

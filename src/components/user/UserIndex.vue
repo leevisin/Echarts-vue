@@ -53,7 +53,6 @@
       </el-row>
     </el-form>
     <el-row style="height: 850px; overflow: auto">
-      <!--      <search-bar></search-bar>-->
       <el-tooltip effect="dark" placement="right"
                   disabled
                   v-for="item in charts"

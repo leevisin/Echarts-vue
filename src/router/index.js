@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import AppIndex from '@/components/home/AppIndex'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import PreviewIndex from '@/components/preview/PreviewIndex'
@@ -24,14 +23,6 @@ export default new Router({
       component: Home,
       redirect: '/chart',
       children: [
-        {
-          path: '/index',
-          name: '/AppIndex',
-          component: AppIndex,
-          meta: {
-            requireAuth: true
-          }
-        },
         {
           path: '/preview',
           name: '/Preview',

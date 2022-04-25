@@ -162,7 +162,7 @@ export default {
       this.coverTmp = file.response.url
     },
     downloadChart() {
-      let myChart = this.$store.getters.getType
+      let myChart = this.$store.getters.getChart
       this.downloadFile(myChart)
     },
     // click to download img but now for getting img URL

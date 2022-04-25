@@ -53,7 +53,7 @@ export default {
           'ecStat',
           `const ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';var option;let myChart = echarts.init(this.$refs.chartRef);` +
           script +
-          `myChart.clear();option && myChart.setOption(option);this.$store.commit("setType", myChart)`
+          `myChart.clear();option && myChart.setOption(option);this.$store.commit("setChart", myChart)`
         ).bind(this)
         func(this.$echarts, this.$ecStat)
       } catch (e) {

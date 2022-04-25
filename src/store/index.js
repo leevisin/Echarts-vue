@@ -5,8 +5,6 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    userName: 'San Zhang',
-    userAge: 2,
     init: '0',
     title: '',
     type: '',
@@ -31,14 +29,9 @@ const store = new Vuex.Store({
       '};',
     spreadsheet: '',
     cover: '',
+    chart: '',
   },
   mutations: {
-    setUserName(state, aUserName){
-      state.userName = aUserName;
-    },
-    setUserAge(state, aUserAge){
-      state.userAge = aUserAge;
-    },
     setInit(state, aInit){
       state.init = aInit;
     },
@@ -57,14 +50,11 @@ const store = new Vuex.Store({
     setCover(state, aCover){
       state.cover = aCover;
     },
+    setChart(state, aChart){
+      state.chart = aChart;
+    },
   },
   getters: {
-    getAge(state) {
-      return state.userAge;
-    },
-    getAgeOfNextYear(state) {
-      return state.userAge + 1;
-    },
     getInit(state) {
       return state.init;
     },
@@ -83,14 +73,11 @@ const store = new Vuex.Store({
     getCover(state) {
       return state.cover;
     },
+    getChart(state) {
+      return state.chart;
+    },
   },
   actions: {
-    getAge(context) {
-      context.commit('getAge');
-    },
-    getAgeOfNextYear(context) {
-      context.commit('getAgeOfNextYear');
-    },
     getInit(context) {
       context.commit('getInit');
     },
@@ -108,6 +95,9 @@ const store = new Vuex.Store({
     },
     getCover(context) {
       context.commit('getCover');
+    },
+    getChart(context) {
+      context.commit('getChart');
     },
   }
 })

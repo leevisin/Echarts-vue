@@ -162,14 +162,57 @@ export default {
       this.coverTmp = file.response.url
     },
     downloadChart() {
-      let aLink = document.createElement('a');
-      let evt = document.createEvent('HTMLEvents');
-      evt.initEvent('click', true, true);
-      aLink.download = "Echarts"; // Save Img Name
-      aLink.href = this.$store.getters.getCover
-      console.log(aLink.href)
-      aLink.click(); // Use for download
-    }
+      let myChart = this.$store.getters.getType
+      this.downloadFile(myChart)
+    },
+    // click to download img but now for getting img URL
+    downloadFile(myChart) {
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+      const sleepToRun = async () => {
+        await sleep(0)
+        if (myChart == null) {
+          return
+        }
+        let aLink = document.createElement('a');
+        let blob = this.base64ToBlob(myChart);
+        if (typeof(blob) == "undefined")
+        {
+          return
+        }
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent('click', true, true);
+        aLink.download = "Echarts"; // Save Img Name
+        aLink.href = URL.createObjectURL(blob);
+        this.$store.commit('setCover', aLink.href)
+        aLink.click(); // Use for download
+      }
+      sleepToRun()
+    },
+    exportImg(myChart) {
+      // return url based base64
+      return myChart.getDataURL({
+        type: 'png',
+        pixelRatio: 1,
+        backgroundColor: '#fff'
+      })
+    },
+    base64ToBlob(myChart) {
+      // change base64 to blob
+      let img = this.exportImg(myChart);
+      if (typeof(img) == "undefined")
+      {
+        return
+      }
+      let parts = img.split(';base64,');
+      let contentType = parts[0].split(':')[1];
+      let raw = window.atob(parts[1]);
+      let rawLength = raw.length;
+      let uInt8Array = new Uint8Array(rawLength);
+      for (let i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+      }
+      return new Blob([uInt8Array], { type: contentType });
+    },
   }
 }
 </script>

@@ -53,52 +53,16 @@ export default {
           'ecStat',
           `const ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';var option;let myChart = echarts.init(this.$refs.chartRef);` +
           script +
-          `myChart.clear();option && myChart.setOption(option);this.downloadFile(myChart);`
+          `myChart.clear();option && myChart.setOption(option);this.$store.commit("setType", myChart)`
         ).bind(this)
         func(this.$echarts, this.$ecStat)
       } catch (e) {
         // print error information
         console.log(e)
       }
-    },
-    // click to download img but now for getting img URL
-    downloadFile(myChart) {
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-      const sleepToRun = async () => {
-        await sleep(3000)
-        let aLink = document.createElement('a');
-        let blob = this.base64ToBlob(myChart);
-        let evt = document.createEvent('HTMLEvents');
-        evt.initEvent('click', true, true);
-        aLink.download = "Echarts"; // Save Img Name
-        aLink.href = URL.createObjectURL(blob);
-        this.$store.commit('setCover', aLink.href)
-        // aLink.click(); // Use for download
-      }
-      sleepToRun()
 
     },
-    exportImg(myChart) {
-      // return url based base64
-      return myChart.getDataURL({
-        type: 'png',
-        pixelRatio: 1,
-        backgroundColor: '#fff'
-      })
-    },
-    base64ToBlob(myChart) {
-      // change base64 to blob
-      let img = this.exportImg(myChart);
-      let parts = img.split(';base64,');
-      let contentType = parts[0].split(':')[1];
-      let raw = window.atob(parts[1]);
-      let rawLength = raw.length;
-      let uInt8Array = new Uint8Array(rawLength);
-      for (let i = 0; i < rawLength; ++i) {
-        uInt8Array[i] = raw.charCodeAt(i);
-      }
-      return new Blob([uInt8Array], { type: contentType });
-    },
+
   },
   mounted() {
     // this.$store.getters.getInit == '0' is the first time else not

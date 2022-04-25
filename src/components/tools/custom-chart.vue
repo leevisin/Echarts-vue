@@ -42,11 +42,11 @@ export default {
       this.$emit('sendOption', this.chartOption)
     },
     changeChart(script) {
-      // 用echarts时，如果不存在DOM，就会报错，处理方法先检查是否DOM存在：
+      // check DOM is exist, error if not
       if (this.$refs.chartRef == null) {
         return
       }
-      // 用echarts时，如果存在DOM，就会报存在警告，处理方法删除DOM：
+      // warning if DOM is exist, dispose to ignore warning
       this.$echarts.dispose(this.$refs.chartRef)
       try {
         let func = new Function(
@@ -58,11 +58,11 @@ export default {
         ).bind(this)
         func(this.$echarts, this.$ecStat)
       } catch (e) {
-        // 打印错误信息
+        // print error information
         console.log(e)
       }
     },
-    // Click to download img but now for getting img URL
+    // click to download img but now for getting img URL
     downloadFile(myChart) {
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
       const sleepToRun = async () => {
@@ -73,21 +73,22 @@ export default {
         evt.initEvent('click', true, true);
         aLink.download = "Echarts"; // Save Img Name
         aLink.href = URL.createObjectURL(blob);
-        // console.log(aLink.href)
         this.$store.commit('setCover', aLink.href)
         // aLink.click(); // Use for download
       }
       sleepToRun()
 
     },
-    exportImg(myChart) { // Echart返回一个 base64 的 URL
+    exportImg(myChart) {
+      // return url based base64
       return myChart.getDataURL({
         type: 'png',
         pixelRatio: 1,
         backgroundColor: '#fff'
       })
     },
-    base64ToBlob(myChart) { //将base64转换blob
+    base64ToBlob(myChart) {
+      // change base64 to blob
       let img = this.exportImg(myChart);
       let parts = img.split(';base64,');
       let contentType = parts[0].split(':')[1];
@@ -110,16 +111,15 @@ export default {
       this.changeChart(this.$store.getters.getScriptStr);
     }
 
-    // 接收编辑器组件传来的新的图表配置信息代码
+    // get chart component code from editor
     this.bus.$on('sendScript', res => {
       this.chartOption = res[0]
       if (res[1] === null) {
-        // 如果接收到的excel表格数据为空，说明可能已经在编辑器内容中定义好了data数据源，不用再做字符串拼接，那么直接渲染图表
+        // if Excel data is null
         this.changeChart(this.chartOption)
       } else {
-        // 如果表格数据不为空，则说明需要做字符串拼接，否则运行后会报data未定义，之后再渲染图表
+        // if Excel data is not null
         // this.chartOption = `let data = ` + JSON.stringify(res[1]) + ';' + '\n' + res[0]
-        // console.log(this.chartOption)
         this.changeChart(this.chartOption)
       }
     })

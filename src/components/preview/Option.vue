@@ -64,32 +64,6 @@
         <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>
       </el-form-item>
     </el-form>
-
-<!--      <el-form>-->
-<!--        <el-form-item>-->
-<!--          <el-input type="text" v-model="titleTmp" auto-complete="off" placeholder="Title"></el-input>-->
-<!--          <el-input type="text" v-model="titleFontSizeTmp" auto-complete="off" placeholder="Title Font Size"></el-input>-->
-<!--            <label class="hint">Title Font Color</label>-->
-<!--            <el-input style="width: 300px" type="text" v-model="titleFontColorTmp" auto-complete="off" placeholder="Title Font Color"></el-input>-->
-<!--            <el-color-picker v-model="titleFontColorTmp" show-alpha></el-color-picker>-->
-<!--          <el-input type="text" v-model="subtitleTmp" auto-complete="off" placeholder="Subtitle"></el-input>-->
-<!--          <el-input type="text" v-model="xAxisNameTmp" auto-complete="off" placeholder="xAxis Name"></el-input>-->
-<!--          <el-input type="text" v-model="yAxisNameTmp" auto-complete="off" placeholder="yAxis Name"></el-input>-->
-<!--          <div>-->
-<!--            <a class="hint">Save as Image:</a>-->
-<!--            <el-radio v-model="isSaveImg" label="0">False</el-radio>-->
-<!--            <el-radio v-model="isSaveImg" label="1">True</el-radio>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <a class="hint">Grid is Rectangle:</a>-->
-<!--            <el-radio v-model="isRectangle" label="0">False</el-radio>-->
-<!--            <el-radio v-model="isRectangle" label="1">True</el-radio>-->
-<!--          </div>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item style="width: 100%">-->
-<!--          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="update">Update</el-button>-->
-<!--        </el-form-item>-->
-<!--      </el-form>-->
   </div>
 </template>
 
@@ -125,7 +99,6 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         this.changeDataZoom()
         this.changeIsRectangle()
         this.changeBackgroundColor()
-        // this.Test()
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 4,
           space_in_empty_paren: true
@@ -314,27 +287,12 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           }
         }
       },
-      Test() {
-        console.log(this.strTmp)
-        let groups = this.strTmp.replace(/series:(.*)\[(.*)data:(.*)\[(.*)\](.*)\]/gm, 'series:$1\[$2data:$3\[Success\]$5\]')
-        console.log(this.strTmp)
-        console.log(groups)
-      },
     },
     computed: {
       title: function () {
         return this.$store.getters.getTitle
       }
     },
-    created() {
-      // console.info(this.userName);
-      // console.info(this.userAge);
-      // console.log("Welcome to my page aPAout expression page!".match(/pa/gi));
-      // const str = this.$store.getters.getScriptStr;
-      // console.log(str);
-      // console.log(str.match(/text:(.*)\n/));
-      // console.log(str.match(/'text':(.*)|text:(.*)/gm))
-    }
   }
 </script>
 

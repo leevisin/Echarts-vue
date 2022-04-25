@@ -1,7 +1,6 @@
 <template>
   <div>
     <button class="getRsltBtn" v-on:click="getResult">Generate Result</button>
-<!--    <button  v-on:click="clearExcel">Clear Data</button>-->
     <button class="downloadExcelBtn" v-on:click="downloadExcel">Download Excel as CSV File</button>
     <div class="excelStyle" ref="spreadsheet" id="spreadsheet"></div>
   </div>
@@ -59,7 +58,7 @@ export default {
       this.bus.$emit('sendSpreadsheet', realData)
     },
     getRealData() {
-      // Get True Row and Column
+      // Get real Row and Column
       var maxRow = 0;
       var maxColumn = 0;
       for (var i=0; i < data.length; i++) {
@@ -74,7 +73,7 @@ export default {
           }
         }
       }
-      // Return True Data
+      // Return real Data
       var tData = []
       for (var i=0; i < maxRow + 1; i++) {
         var dataTmp = []
@@ -84,12 +83,6 @@ export default {
         tData[i] = dataTmp
       }
       return tData
-    },
-    addColumn() {
-
-    },
-    clearExcel() {
-
     },
     downloadExcel() {
       this.spreadsheet.download()
@@ -122,6 +115,7 @@ export default {
   color: #fff;
   background-color: #FF4500;
 }
+
 .downloadExcelBtn {
   position: absolute;
   top: 70px;

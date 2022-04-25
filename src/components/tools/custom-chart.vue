@@ -1,6 +1,5 @@
 <template>
     <div>
-<!--      <button @click="downloadFile">DownLoad</button>-->
       <div ref="chartRef" id="Chart" style="width: 1200px;height: 880px;"></div>
     </div>
 </template>

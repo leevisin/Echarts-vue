@@ -13,7 +13,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
     },
@@ -21,7 +21,7 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home,
-      redirect: '/chart',
+      redirect: '/preview',
       children: [
         {
           path: '/preview',
@@ -48,6 +48,12 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/',
+      name: 'Login',
+      redirect: '/login',
+      component: Login
     },
     {
       path: '/login',

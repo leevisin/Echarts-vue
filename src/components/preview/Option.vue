@@ -168,7 +168,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.xAxisNameTmp == 'null') {
           this.xAxisNameTmp = ''
         }
-        if (this.strTmp.match(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null && this.strTmp.match(/series:/gm) == null) {
+        if (this.strTmp.match(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
           this.strTmp = this.strTmp.replace(/xAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "xAxis: {$1name: '"+ this.xAxisNameTmp +"'$3}")
         } else {
           this.strTmp = this.strTmp.replace(/xAxis: {(.*?)}/gm, "xAxis: { name:'"+ this.xAxisNameTmp +"',$1}")
@@ -181,7 +181,7 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         if (this.yAxisNameTmp == 'null') {
           this.yAxisNameTmp = ''
         }
-        if (this.strTmp.match(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null && this.strTmp.match(/series:/gm) == null) {
+        if (this.strTmp.match(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm) != null) {
           this.strTmp = this.strTmp.replace(/yAxis: {(.*?)name: '(.*?)'(.*?)}/gm, "yAxis: {$1name: '"+ this.yAxisNameTmp +"'$3}")
         } else {
           this.strTmp = this.strTmp.replace(/yAxis: {(.*?)}/gm, "yAxis: { name:'"+ this.yAxisNameTmp +"',$1}")

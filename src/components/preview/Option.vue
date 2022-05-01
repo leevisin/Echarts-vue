@@ -120,17 +120,23 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
         }
       },
       changeTitleStyle() {
+        let fontSize = "20"
         if (this.titleFontSizeTmp != '') {
+          // process input is digit
+          if (this.titleFontSizeTmp.match(/(\d+)/gm) != null) {
+            fontSize = this.titleFontSizeTmp.match(/(\d+)/gm)
+          }
+
           if (this.strTmp.match(/[^sub]text:(.*?),/gm) != null){
             if (this.strTmp.match(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*?)}/gm) != null) {
               if (this.strTmp.match(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (.*?),(.*?)}/gm) != null) {
-                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + this.titleFontSizeTmp + ",$5},")
+                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*)fontSize: (\d+),(.*?)},/gm, "text:$1,$2textStyle: {$3fontSize: " + fontSize + ",$5},")
               } else {
-                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + this.titleFontSizeTmp + ",$3},")
+                this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),(.*)[^sub]textStyle: {(.*?)},/gm, "text:$1,$2textStyle: { fontSize: " + fontSize + ",$3},")
                 console.log("run here")
               }
             } else {
-              this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + this.titleFontSizeTmp + ", },")
+              this.strTmp = this.strTmp.replace(/[^sub]text:(.*?),/gm, "text:$1, textStyle: { fontSize: " + fontSize + ", },")
             }
           }
         }
@@ -259,20 +265,20 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
           return
         }
         if (this.isRectangle == '0') {
-          this.strTmp = this.strTmp.replace(/grid: {(.*)show: true,(.*)}/gm, "grid: {$1show: false,$2}")
+          this.strTmp = this.strTmp.replace(/grid: {(.*?)show: true,(.*?)}/gm, "grid: {$1show: false,$2}")
         }
         if (this.isRectangle == '1') {
-          if (this.strTmp.match(/grid: {(.*)show: false,(.*)}/gm) != null){
-            this.strTmp = this.strTmp.replace(/grid: {(.*)show: false,(.*)}/gm, "grid: {$1show: true,$2}")
-          } else if (this.strTmp.match(/grid: {(.*)show: true,(.*)}/gm) != null){
+          if (this.strTmp.match(/grid: {(.*?)show: false,(.*?)}/gm) != null){
+            this.strTmp = this.strTmp.replace(/grid: {(.*?)show: false,(.*?)}/gm, "grid: {$1show: true,$2}")
+          } else if (this.strTmp.match(/grid: {(.*?)show: true,(.*?)}/gm) != null){
             return;
-          } else if (this.strTmp.match(/grid: {(.*)}/gm) == null){
+          } else if (this.strTmp.match(/grid: {(.*?)}/gm) == null){
             this.strTmp = this.strTmp.replace(/option = {/gm, "option = {" +
               "  grid: {" +
               "    show: true," +
               "  },")
-          } else if (this.strTmp.match(/grid: {(.*)}/gm) != null){
-            this.strTmp = this.strTmp.replace(/grid: {(.*)}/gm, "grid: { show: true,$1}")
+          } else if (this.strTmp.match(/grid: {(.*?)}/gm) != null){
+            this.strTmp = this.strTmp.replace(/grid: {(.*?)}/gm, "grid: { show: true,$1}")
           }
         }
       },

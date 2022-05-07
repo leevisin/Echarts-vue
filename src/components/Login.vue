@@ -27,7 +27,26 @@ export default {
         username: '',
         password: ''
       },
-      responseResult: []
+      responseResult: [],
+      orgScript: 'option = {\n' +
+        '    title: {\n' +
+        '      text: \'Title Test\',\n' +
+        '    },\n' +
+        '    tooltip: {},\n' +
+        '    xAxis: {\n' +
+        '      type: \'category\',\n' +
+        '      data: [\'Mon\', \'Tue\', \'Wed\', \'Thu\', \'Fri\', \'Sat\', \'Sun\']\n' +
+        '    },\n' +
+        '    yAxis: {\n' +
+        '      type: \'value\'\n' +
+        '    },\n' +
+        '    series: [\n' +
+        '      {\n' +
+        '        data: [150, 230, 224, 218, 135, 147, 260],\n' +
+        '        type: \'line\'\n' +
+        '      }\n' +
+        '    ]\n' +
+        '};'
     }
   },
   methods: {
@@ -39,6 +58,9 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
+            // reset website and jump to /preview
+            this.$store.commit('setScriptStr', this.orgScript)
+            this.$store.commit('setInit','0')
             this.$router.replace({path: '/preview'})
           } else if (successResponse.data.code === 400) {
             alert("The username or password is incorrect, please re-enter it.")
@@ -49,6 +71,9 @@ export default {
         })
     },
     skipLogin() {
+      // reset website and jump to /preview
+      this.$store.commit('setScriptStr', this.orgScript)
+      this.$store.commit('setInit','0')
       this.$router.push('/preview');
     }
   }

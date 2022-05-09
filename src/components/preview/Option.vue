@@ -90,15 +90,16 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
       update(){
         this.strTmp = this.$store.getters.getScriptStr
         this.strTmp = this.strTmp.replace(/\n/gm, '')
+        this.changeIsRectangle()
+        this.changeBackgroundColor()
+        this.changeSaveImg()
+        this.changeDataZoom()
+        this.changeXAxisName()
+        this.changeYAxisName()
         this.changeTitle()
         this.changeTitleStyle()
         this.changeSubtitle()
-        this.changeXAxisName()
-        this.changeYAxisName()
-        this.changeSaveImg()
-        this.changeDataZoom()
-        this.changeIsRectangle()
-        this.changeBackgroundColor()
+
         this.strTmp = js_beautify(this.strTmp, {
           indent_size: 4,
           space_in_empty_paren: true

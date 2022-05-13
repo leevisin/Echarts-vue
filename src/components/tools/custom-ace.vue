@@ -121,7 +121,6 @@ export default {
     sendChartOption() {
       // get the result of code syntax in editor
       var annotations = this.aceEditor.getSession().getAnnotations();
-      console.log(annotations)
       function equar(a, b) {
         // judge the length of array
         if (a.length !== b.length) {

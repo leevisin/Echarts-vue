@@ -225,7 +225,6 @@ import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
               "  },")
           }
         }
-        console.log(this.strTmp)
       },
       changeDataZoom() {
         if (this.isDataZoom == '') {
